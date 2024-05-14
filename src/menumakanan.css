@@ -107,19 +107,19 @@ body {
 
 #subdeskripsi {
     overflow: hidden;
+    width: 164px;
+    height: 44px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 164px;
-    height: 44px;
     border-radius: 8px;
     border: 2px solid #FF9C3D;
 }
 
 #boxharga {
-    font-family: InterReg;
     width: 103px;
     height: 44px;
+    font-family: InterReg;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -128,13 +128,13 @@ body {
 
 #icontambah {
     all: unset;
-    display: flex;
-    font-family: InterReg;
-    justify-content: center;
-    align-items: center;
-    height: 44px;
     width: 61px;
+    height: 44px;
     background: #FF9C3D;
+    font-family: InterReg;
     font-size: 25px;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
