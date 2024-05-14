@@ -9,7 +9,7 @@
 </head>
 
 <body class="bg-black-100">
-    <h1>tes</h1>
+
 </body>
 
 </html>
