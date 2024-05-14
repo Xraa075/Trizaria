@@ -1,0 +1,9 @@
+body {
+    background: url('asset/bglogin.svg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+}
