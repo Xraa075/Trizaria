@@ -28,20 +28,20 @@ if(isset($_POST["login"])) {
     <link rel="stylesheet" href="loginkasir.css">
     <title>Login</title>
 </head>
+`
 
 <body>
 
 
     <div class="container">
+        <img src="asset/logotrizaria.svg">
         <h1>Logout</h1>
         <form action="" method="post">
             <ul>
                 <li class="label">
-                    <label for="username">Username: </label>
                     <input type="text" name="username" id="username">
                 </li>
                 <li class="label">
-                    <label for="password">Password: </label>
                     <input type="password" name="password" id="password">
                 </li>
                 <button type="submit" name="login" class="button">Login</button>
