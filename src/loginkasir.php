@@ -15,6 +15,7 @@ if(isset($_POST["login"])) {
             exit;
         }
     }
+    $error = true;
 }
 
 ?>
@@ -28,26 +29,28 @@ if(isset($_POST["login"])) {
     <link rel="stylesheet" href="loginkasir.css">
     <title>Login</title>
 </head>
-`
 
 <body>
-
-
     <div class="container">
-        <img src="asset/logotrizaria.svg">
+        <img src="asset/logotrizaria.svg" class="img">
         <h1>LOGIN</h1>
+
+        <?php if (isset($error)) : ?>
+        <p>username / password salah!!</p>
+        <?php endif; ?>
+
         <form action="" method="post">
             <ul>
-                <li class="label">
-                    <input type="text" name="username" id="username" placeholder="username">
+                <li>
+                    <input type="text" name="username" placeholder="username">
                 </li>
-                <li class="label">
-                    <input type="password" name="password" id="password" placeholder="password">
+                <li>
+                    <input type="password" name="password" placeholder="password">
                 </li>
-                <button type="submit" name="login" class="button">Login</button>
+                <button type="submit" name="login" class="submit">Login</button>
             </ul>
         </form>
     </div>
 </body>
 
-</html>
+</html>''
