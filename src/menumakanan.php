@@ -14,9 +14,9 @@
             OUR MENU
         </div>
         <div id="switchmenu">
-            <div id="switchmakanan">Pizza</div>
+            <div id="switchmakanan"><a href="menumakanan.php" style="all:unset">Pizza</a></div>
             <div>|</div>
-            <div id="switchminuman">Drink</div>
+            <div id="switchminuman"><a href="menuminuman.php" style="all:unset">Drink</a></div>
         </div>
     </div>
 
