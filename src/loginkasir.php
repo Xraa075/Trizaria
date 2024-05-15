@@ -35,14 +35,14 @@ if(isset($_POST["login"])) {
 
     <div class="container">
         <img src="asset/logotrizaria.svg">
-        <h1>Logout</h1>
+        <h1>LOGIN</h1>
         <form action="" method="post">
             <ul>
                 <li class="label">
-                    <input type="text" name="username" id="username">
+                    <input type="text" name="username" id="username" placeholder="username">
                 </li>
                 <li class="label">
-                    <input type="password" name="password" id="password">
+                    <input type="password" name="password" id="password" placeholder="password">
                 </li>
                 <button type="submit" name="login" class="button">Login</button>
             </ul>
