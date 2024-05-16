@@ -47,7 +47,7 @@ p {
     margin-bottom: 10px;
 }
 
-h1 {
+h2 {
     color: #FFE2C6;
     margin: 0px 0px 10px 0px;
     font-weight: 100;
@@ -96,7 +96,6 @@ input::placeholder {
 
 input:focus {
     border-color: #FF9C3D;
-    background-color: transparent;
 }
 
 button {
