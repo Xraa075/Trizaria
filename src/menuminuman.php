@@ -22,98 +22,81 @@
 
     <div id="welcome">WELCOME</div>
     <div id="boxmenu">
-        <div id="sub_boxmenu">
+        <form id="sub_boxmenu" method="POST" action="">
             <div id="row_card">
                 <div id="card_menu">
-                    <img src="asset/mojito.svg" height="300px" />
-                    <div id="judulMinuman">Mojito</div>
-                    <div id="deskripsi">Ini makanan enak tau<br>semua harus beli</div>
-                    <div id="subdeskripsi">
-                        <div id="boxharga">75K</div>
-                        <button id="icontambah">+</button>
-                    </div>
+                    <img src="asset/minum1.svg" height="300px" />
+                    <div id="judulMinuman">Ginger Beer</div>
+                    <div id="deskripsi"> lezat, renyah, autentik,<br>segar, dan berbumbu.</div>
+                    <div id="box_harga">25.000</div><br>
+                    <input type="number" id="inputItem" name="ginger" placeholder="0">
                 </div>
                 <div id="card_menu">
                     <img src="asset/minum2.svg" height="300px" />
-                    <div id="judulMinuman">Papperoni</div>
-                    <div id="deskripsi">Ini makanan enak tau<br>semua harus beli</div>
-                    <div id="subdeskripsi">
-                        <div id="boxharga">75K</div>
-                        <button id="icontambah">+</button>
-                    </div>
+                    <div id="judulMinuman">Arnold Palmer</div>
+                    <div id="deskripsi">lezat, pedas, renyah,<br>gurih, dan menggiurkan.</div>
+                    <div id="box_harga">25.000</div><br>
+                    <input type="number" id="inputItem" name="arnold" placeholder="0">
                 </div>
                 <div id="card_menu">
-                    <img src="asset/cola.svg" height="300px" />
+                    <img src="asset/minum3.svg" height="300px" />
                     <div id="judulMinuman">Cola</div>
                     <div id="deskripsi">Ini makanan enak tau<br>semua harus beli</div>
-                    <div id="subdeskripsi">
-                        <div id="boxharga">75K</div>
-                        <button id="icontambah">+</button>
-                    </div>
+                    <div id="box_harga">18.000</div><br>
+                    <input type="number" id="inputItem" name="cola" placeholder="0">
                 </div>
-
             </div>
             <div id="row_card">
                 <div id="card_menu">
-                    <img src="asset/cocktail1.svg" height="300px" />
-                    <div id="judulMinuman">BBQ</div>
+                    <img src="asset/minum4.svg" height="300px" />
+                    <div id="judulMinuman">Rose Marilyn</div>
                     <div id="deskripsi">Ini makanan enak tau<br>semua harus beli</div>
-                    <div id="subdeskripsi">
-                        <div id="boxharga">75K</div>
-                        <button id="icontambah">+</button>
-                    </div>
+                    <div id="box_harga">20.000</div><br>
+                    <input type="number" id="inputItem" name="rose" placeholder="0">
                 </div>
                 <div id="card_menu">
-                    <img src="asset/cocktail2.svg" height="300px" />
-                    <div id="judulMinuman">Cheese</div>
+                    <img src="asset/minum5.svg" height="300px" />
+                    <div id="judulMinuman">Vodka Martini</div>
                     <div id="deskripsi">Ini makanan enak tau<br>semua harus beli</div>
-                    <div id="subdeskripsi">
-                        <div id="boxharga">75K</div>
-                        <button id="icontambah">+</button>
-                    </div>
+                    <div id="box_harga">20.000</div><br>
+                    <input type="number" id="inputItem" name="vodka" placeholder="0">
                 </div>
                 <div id="card_menu">
-                    <img src="asset/cocktail3.svg" height="300px" />
-                    <div id="judulMinuman">Mushroom</div>
+                    <img src="asset/minum6.svg" height="300px" />
+                    <div id="judulMinuman">Orange</div>
                     <div id="deskripsi">Ini makanan enak tau<br>semua harus beli</div>
-                    <div id="subdeskripsi">
-                        <div id="boxharga">75K</div>
-                        <button id="icontambah">+</button>
-                    </div>
+                    <div id="box_harga">20.000</div><br>
+                    <input type="number" id="inputItem" name="orange" placeholder="0">
                 </div>
 
             </div>
             <div id="row_card">
                 <div id="card_menu">
                     <img src="asset/minum7.svg" height="300px" />
-                    <div id="judulMinuman">Zaitun</div>
+                    <div id="judulMinuman">Mojito</div>
                     <div id="deskripsi">Ini makanan enak tau<br>semua harus beli</div>
-                    <div id="subdeskripsi">
-                        <div id="boxharga">75K</div>
-                        <button id="icontambah">+</button>
-                    </div>
+                    <div id="box_harga">20.000</div><br>
+                    <input type="number" id="inputItem" name="mojito" placeholder="0">
                 </div>
                 <div id="card_menu">
                     <img src="asset/minum8.svg" height="300px" />
-                    <div id="judulMinuman">Sisilia</div>
+                    <div id="judulMinuman">Strawberry daiquiris</div>
                     <div id="deskripsi">Ini makanan enak tau<br>semua harus beli</div>
-                    <div id="subdeskripsi">
-                        <div id="boxharga">75K</div>
-                        <button id="icontambah">+</button>
-                    </div>
+                    <div id="box_harga">20.000</div><br>
+                    <input type="number" id="inputItem" name="strawberry" placeholder="0">
                 </div>
                 <div id="card_menu">
                     <img src="asset/minum9.svg" height="300px" />
-                    <div id="judulMinuman">Chicken Tandoori</div>
+                    <div id="judulMinuman">Caipiranha</div>
                     <div id="deskripsi">Ini makanan enak tau<br>semua harus beli</div>
-                    <div id="subdeskripsi">
-                        <div id="boxharga">75K</div>
-                        <button id="icontambah">+</button>
-                    </div>
+                    <div id="box_harga">20.000</div><br>
+                    <input type="number" id="inputItem" name="caipiranha" placeholder="0">
                 </div>
-
             </div>
-        </div>
+            <div id="row_card" style="justify-content: center;">
+                <input type="submit" id="submit" name="submit" value="SUBMIT">
+            </div>
+        </form>
     </div>
 </body>
 

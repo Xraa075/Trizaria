@@ -103,9 +103,10 @@ body {
     font-family: Poly;
     font-size: 20px;
     color: white;
+    text-align: center;
 }
 
-#subdeskripsi {
+/* #subdeskripsi {
     overflow: hidden;
     width: 164px;
     height: 44px;
@@ -114,9 +115,9 @@ body {
     align-items: center;
     border-radius: 8px;
     border: 2px solid #FF9C3D;
-}
+} */
 
-#boxharga {
+/* #boxharga {
     width: 103px;
     height: 44px;
     font-family: InterReg;
@@ -124,9 +125,9 @@ body {
     align-items: center;
     justify-content: center;
     color: white;
-}
+} */
 
-#icontambah {
+/* #icontambah {
     all: unset;
     width: 61px;
     height: 44px;
@@ -137,4 +138,50 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+} */
+#box_harga {
+    color: white;
+    font-family: Poly;
+    font-size: xx-large;
+}
+
+#inputItem {
+    border: none;
+    background-color: transparent;
+    width: 105px;
+    height: 44px;
+    border-radius: 5px;
+    text-align: center;
+    font-family: InterReg;
+    font-size: 18px;
+    color: white;
+    border: 2px solid #FF9C3D;
+    outline: none;
+}
+
+#inputItem::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#inputItem:focus {
+    border: 2px solid #FF9C3D;
+}
+
+#submit {
+    border: none;
+    width: 200px;
+    height: 40px;
+    border-radius: 8px;
+    font-family: InterReg;
+    font-size: 18px;
+    background: transparent;
+    border: 2px solid #FF9C3D;
+    transition: 0.5s ease;
+    color: white;
+}
+
+#submit:hover {
+    background-color: #FF9C3D;
+    color: black;
 }
