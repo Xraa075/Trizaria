@@ -12,7 +12,6 @@
     <div class="container">
         <img src="asset/logotrizaria.svg" class="img">
         <h2>Welcome to our restoran</h2>
-
         <form action="" method="post">
             <ul>
                 <li>
