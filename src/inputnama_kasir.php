@@ -11,16 +11,12 @@
 <body>
     <div class="container">
         <img src="asset/logotrizaria.svg" class="img">
-        <h2>Welcome to our restoran</h2>
+        <div id="welcome">Welcome to our restoran</div>
         <form action="" method="post">
-            <ul>
-                <li>
-                    <input type="text" name="nama_pembeli" placeholder="nama">
-                </li>
-                <button type="submit" name="submit" class="submit">submit</button>
-            </ul>
+            <input type="text" name="nama_pembeli" placeholder="Nama">
+            <button type="submit" name="submit" class="submit">SUBMIT</button>
         </form>
     </div>
 </body>
 
-</html>''
+</html>
