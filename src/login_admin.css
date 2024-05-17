@@ -88,6 +88,7 @@ input {
     background-color: transparent;
     color: white;
     backdrop-filter: blur(4px);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 input::placeholder {
@@ -96,6 +97,7 @@ input::placeholder {
 
 input:focus {
     border-color: #FF9C3D;
+    outline: none;
 }
 
 button {

@@ -96,7 +96,7 @@ input::placeholder {
 
 input:focus {
     border-color: #FF9C3D;
-    background-color: transparent;
+    outline: none;
 }
 
 button {

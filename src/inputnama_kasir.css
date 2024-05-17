@@ -90,6 +90,7 @@ input::placeholder {
 
 input:focus {
     border-color: #FF9C3D;
+    outline: none;
 }
 
 .submit {

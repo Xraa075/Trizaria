@@ -88,6 +88,11 @@ input::placeholder {
     padding-left: 2rem;
 }
 
+input:focus {
+    border-color: #FF9C3D;
+    outline: none;
+}
+
 button {
     background-color: #FF9C3D;
     width: 100%;
