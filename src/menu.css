@@ -23,7 +23,7 @@
 }
 
 body {
-    background: url(asset/BgMenuMakanan.svg);
+    background: url(asset/BgMenuMakanan.svg) no-repeat;
 }
 
 #header {
@@ -67,16 +67,23 @@ body {
     width: 100%;
     height: auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#sub_boxmenu {
+#sub_boxmenu_makan,
+#sub_boxmenu_minum {
     width: 85%;
     height: 1700px;
     display: flex;
     flex-direction: column;
+    background: red;
     justify-content: space-between;
+}
+
+#sub_boxmenu_minum {
+    display: none;
 }
 
 #row_card {
@@ -93,7 +100,7 @@ body {
     align-items: center;
 }
 
-#judulMakanan {
+#judul {
     font-family: InterBold;
     font-size: 36px;
     color: #FF9C3D;
@@ -106,39 +113,6 @@ body {
     text-align: center;
 }
 
-/* #subdeskripsi {
-    overflow: hidden;
-    width: 164px;
-    height: 44px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    border: 2px solid #FF9C3D;
-} */
-
-/* #boxharga {
-    width: 103px;
-    height: 44px;
-    font-family: InterReg;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-} */
-
-/* #icontambah {
-    all: unset;
-    width: 61px;
-    height: 44px;
-    background: #FF9C3D;
-    font-family: InterReg;
-    font-size: 25px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
 #box_harga {
     color: white;
     font-family: Poly;
