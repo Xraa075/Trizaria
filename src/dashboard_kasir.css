@@ -53,14 +53,14 @@ img {
     font-family: Poly;
     font-size: 36px;
     color: white;
-    margin: -30px 0 10px 0;
+    margin: -30px 0 15px 0;
 }
 
 #neworder {
     font-family: PoetsenOne;
-    font-size: 30px;
-    width: 400px;
-    height: 70px;
+    font-size: 26px;
+    width: 350px;
+    height: 58px;
     margin: 0;
     box-sizing: border-box;
     border: none;

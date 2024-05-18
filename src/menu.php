@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+
+if (empty($_SESSION['nama_pembeli'])) {
+    header("Location: inputnama_kasir.php");
+    exit;
+}
+
+?>
+
 <html>
 
 <head>
@@ -20,7 +31,7 @@
         </div>
     </div>
 
-    <div id="welcome">WELCOME</div>
+    <div id="welcome">WELCOME <?php echo htmlspecialchars($_SESSION['nama_pembeli']); ?></div>
     <form id="boxmenu" action="" method="POST">
         <div id="sub_boxmenu_makan">
             <div id="row_card">

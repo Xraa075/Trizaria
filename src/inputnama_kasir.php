@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header("Location: loginkasir.php");
+    exit;
+}
+
+if (isset($_POST['submit'])) {
+    $_SESSION['nama_pembeli'] = trim($_POST['nama_pembeli']);
+    header("Location: menu.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,8 +27,8 @@
         <img src="asset/logotrizaria.svg" class="img">
         <div id="welcome">Welcome to our restoran</div>
         <form action="" method="post">
-            <input type="text" name="nama_pembeli" placeholder="Nama">
-            <button type="submit" name="submit" class="submit">SUBMIT</button>
+            <input type="text" name="nama_pembeli" placeholder="Nama pembeli" require>
+            <button type="submit" name="submit" class="submit">Submit</button>
         </form>
     </div>
 </body>
