@@ -1,3 +1,17 @@
+<?php
+session_start();
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header("Location: loginkasir.php");
+    exit;
+}
+if (isset($_POST['logout'])) {
+    session_unset();
+    session_destroy();
+    header("Location: loginkasir.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,8 +26,9 @@
     <div class="container">
         <img src="asset/logotrizaria.svg">
         <div id="tagline">Slice into happiness your perfect pizza experience</div>
-        <form>
-            <button id="neworder">New Order</button>
+        <button id="neworder" onclick="window.location = 'inputnama_kasir.php'">New Order</button>
+        <form method="POST">
+            <button type="submit" name="logout">LOGOUT</button>
         </form>
     </div>
 </body>
