@@ -68,7 +68,6 @@
                     <div id="box_harga">70.000</div><br>
                     <input type="number" id="inputItem" name="mushroom" placeholder="0">
                 </div>
-
             </div>
             <div id="row_card">
                 <div id="card_menu">

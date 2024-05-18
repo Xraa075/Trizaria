@@ -78,7 +78,6 @@ body {
     height: 1700px;
     display: flex;
     flex-direction: column;
-    background: red;
     justify-content: space-between;
 }
 
