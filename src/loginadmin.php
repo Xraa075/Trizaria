@@ -1,17 +1,21 @@
 <?php
 
+session_start();
+
 require 'connection.php';
 
 if(isset($_POST["login"])) {
-    $username = $_POST["username"];
+    $username_kasir = $_POST["username"];
     $password = $_POST["password"];
 
-    $result = mysqli_query($conn, "SELECT * FROM kasir WHERE username_kasir = '$username'");
+    $result = mysqli_query($conn, "SELECT * FROM admin_pizza WHERE username_admin = '$username_kasir'");
 
     if(mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
-        if(password_verify($password, $row["password_kasir"])) {
-            header("Location: dashboard_kasir.php");
+        if(password_verify($password, $row["password_admin"])) {
+            $_SESSION["login"] = true;
+            $_SESSION["user"] = $username_kasir;
+            header("Location: dashboard_admin.php");
             exit;
         }
     }
