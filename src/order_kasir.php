@@ -1,3 +1,15 @@
+<?php
+
+require 'koneksi.php';
+session_start();
+
+
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,22 +23,57 @@
 <body>
     <h1 class="title">Your Order</h1>
     <form>
-        <div class="container1">
-            <div class="leftcon">
-                <div class="left">
-                    <h2 class="titleproduct">Margaritha</h2>
-                    <P>Tomato, oil, white chili, red dragon</P>
-                    <h2 class="price">75K</h2>
+        <?php
+        if (!empty($_SESSION['margaritha'])) {
+            echo
+            '<div class="container1">
+                <div class="leftcon">
+                    <div class="left">
+                    <h2 class="titleproduct">' . $Margaritha['nama'] . '</h2>
+                    <P>' . $Margaritha['detail'] . '</P>
+                    <h2 class="price">' . $Margaritha['harga'] . '</h2>
+                    </div>
+                    <div class="right">' . $Margaritha['gambar'] . '</div>
                 </div>
-                <div class="right">
-                    <img src="asset/papperoni.svg">
+                <div class="rightcon">
+                    <h1>' . $_SESSION['margaritha'] . ' PCS</h1>
+                    <h2>' . $_SESSION['margaritha'] * $Margaritha['harga'] . '</h2>
                 </div>
-            </div>
-            <div class="rightcon">
-                <h1>5 PCS</h1>
-                <h2>375k</h2>
-            </div>
-        </div>
+            </div>';
+        }
+        if (!empty($_SESSION['pepperoni'])) {
+            echo
+            '<div class="container1">
+                <div class="leftcon">
+                    <div class="left">
+                    <h2 class="titleproduct">' . $Pepperoni['nama'] . '</h2>
+                    <P>' . $Pepperoni['detail'] . '</P>
+                    <h2 class="price">' . $Pepperoni['harga'] . '</h2>
+                    </div>
+                    <div class="right">' . $Pepperoni['gambar'] . '</div>
+                </div>
+                <div class="rightcon">
+                    <h1>' . $_SESSION['pepperoni'] . ' PCS</h1>
+                    <h2>' . $_SESSION['pepperoni'] * $Pepperoni['harga'] . '</h2>
+                </div>
+            </div>';
+        }
+        if (!empty($_SESSION['sausage'])) {
+            echo
+            '<div class="container1">
+                <div class="leftcon">
+                    <div class="left">
+                    </div>
+                    <div class="right">
+                    </div>
+                </div>
+                <div class="rightcon">
+                    <h1>' . $_SESSION['sausage'] . ' PCS</h1>
+                </div>
+            </div>';
+        }
+        ?>
+
         <div class="container2">
             <h2>TOTAL PEMBAYARAN : 375K</h2>
         </div>

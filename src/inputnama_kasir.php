@@ -6,6 +6,11 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     exit;
 }
 
+if(isset($_SESSION['nama_pembeli'])) {
+    header("Location: menu.php");
+    exit;
+}
+
 if (isset($_POST['submit'])) {
     $_SESSION['nama_pembeli'] = trim($_POST['nama_pembeli']);
     header("Location: menu.php");
