@@ -17,8 +17,6 @@ $sql_select = mysqli_query($conn, $select);
 $detail = mysqli_fetch_assoc($sql_select);
 $image = $detail["gambar"];
 
-
-
 ?>
 
 <!DOCTYPE html>

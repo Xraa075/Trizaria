@@ -32,6 +32,7 @@ if(isset($_POST["submit"])) {
     mysqli_query($conn, $query);
 
     header("Location: dashboard_admin.php");
+    exit;
 }
 
 ?>
