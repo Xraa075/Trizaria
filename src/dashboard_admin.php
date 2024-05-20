@@ -25,23 +25,6 @@ $result_makanan = mysqli_query($conn, "SELECT * FROM makanan");
 
 $result_minuman = mysqli_query($conn, "SELECT * FROM minuman");
 
-// while($makanan = mysqli_fetch_assoc($result_makanan)) {
-//     var_dump($makanan);
-// }
-
-
-
-
-// $sql_makanan = "SELECT gambar FROM makanan";
-// $result = $conn->query($sql_makanan);
-
-// if($result->num_rows > 0) {
-//     $gambar = [];
-//     while($row = $result->fetch_assoc()) {
-//         $gambar = htmlspecialchars($row["gambar"]);
-//     }
-// }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,6 +42,9 @@ $result_minuman = mysqli_query($conn, "SELECT * FROM minuman");
         <h1>Selamat datang, <?= $nama ?></h1>
         <div class="container1">
             <h2>Menejemen Makanan</h2>
+            <div class="buttontambah">
+                <a href="tambah_makanan.php">Tambah Menu Makanan</a>
+            </div>
             <table>
                 <div class="table_head">
                     <tr>
@@ -85,9 +71,21 @@ $result_minuman = mysqli_query($conn, "SELECT * FROM minuman");
                         <td><?= $row["harga"]; ?></td>
                         <td><?= $row["stok"]; ?></td>
                         <td>
-                            <a href="">Detail</a>
-                            <a href="">Edit</a>
-                            <a href="">Hapus</a>
+                            <!-- <a href="">Detail</a> -->
+                            <!-- <a href="">Edit</a>
+                                <a href="">Hapus</a> -->
+                            <form method="get" action="detail_makanan.php">
+                                <input type="hidden" name="nama" value="<?= $row['nama']; ?>">
+                                <button type="submit">Detail</button>
+                            </form>
+                            <form method="get" action="edit_makanan.php">
+                                <input type="hidden" name="nama" value="<?= $row['nama']; ?>">
+                                <button type="submit">Edit</button>
+                            </form>
+                            <form method="get" action="hapus_makanan.php">
+                                <input type="hidden" name="nama" value="<?= $row['nama']; ?>">
+                                <button type="submit">Hapus</button>
+                            </form>
                         </td>
                     </tr>
 

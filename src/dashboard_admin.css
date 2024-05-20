@@ -45,6 +45,21 @@ body {
     color: white;
 }
 
+.buttontambah {
+    background-color: #FF9C3D;
+    height: 3rem;
+    width: 12rem;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
 img {
     margin-bottom: -20px;
 }
