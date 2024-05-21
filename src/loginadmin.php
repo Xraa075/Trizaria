@@ -4,15 +4,15 @@ session_start();
 
 require 'connection.php';
 
-if(isset($_POST["login"])) {
+if (isset($_POST["login"])) {
     $username_kasir = $_POST["username"];
     $password = $_POST["password"];
 
     $result = mysqli_query($conn, "SELECT * FROM admin_pizza WHERE username_admin = '$username_kasir'");
 
-    if(mysqli_num_rows($result) === 1) {
+    if (mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
-        if(password_verify($password, $row["password_admin"])) {
+        if (password_verify($password, $row["password_admin"])) {
             $_SESSION["login"] = true;
             $_SESSION["user"] = $username_kasir;
             header("Location: dashboard_admin.php");
@@ -40,7 +40,7 @@ if(isset($_POST["login"])) {
         <h1>LOGIN</h1>
 
         <?php if (isset($error)) : ?>
-        <p>username / password salah!!</p>
+            <p>username / password salah!!</p>
         <?php endif; ?>
 
         <form action="" method="post">

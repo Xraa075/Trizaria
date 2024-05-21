@@ -6,7 +6,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     exit;
 }
 
-if(isset($_SESSION['nama_pembeli'])) {
+if (isset($_SESSION['nama_pembeli'])) {
     header("Location: menu.php");
     exit;
 }
