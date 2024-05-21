@@ -67,7 +67,6 @@ body {
     width: 100%;
     height: auto;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -75,14 +74,31 @@ body {
 #sub_boxmenu_makan,
 #sub_boxmenu_minum {
     width: 95%;
-    height: 1700px;
+    height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 #sub_boxmenu_minum {
     display: none;
+}
+
+#row_card {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#card_menu {
+    height: auto;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5rem;
 }
 
 rect {
@@ -93,21 +109,6 @@ rect {
 svg {
     width: 300px;
     height: 300px;
-}
-
-#row_card {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-}
-
-#card_menu {
-    height: auto;
-    width: 380px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
 }
 
 #judul {
@@ -156,8 +157,10 @@ svg {
     font-family: Poly;
     font-size: 32px;
     border: none;
-    width: 60%;
+    width: 77%;
     height: 60px;
     border-radius: 50px;
     background: #FF9C3D;
+    margin-top: 50px;
+    margin-bottom: 100px;
 }

@@ -3,12 +3,12 @@
 require 'koneksi.php';
 session_start();
 
-
+if (empty($_SESSION['nama_pembeli'])) {
+    header("Location: inputnama_kasir.php");
+    exit;
+}
 
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,61 +21,31 @@ session_start();
 </head>
 
 <body>
-    <h1 class="title">Your Order</h1>
+    <h1 class="title"><?php echo $_SESSION['nama_pembeli'] ?> order</h1>
     <form>
         <?php
-        if (!empty($_SESSION['margaritha'])) {
+        foreach ($_SESSION['menu'] as $key => $value) {
+            $menus = mysqli_query($koneksi, "SELECT * FROM makanan WHERE nama = '$key' UNION SELECT * FROM minuman WHERE nama = '$key'");
+            $menu = mysqli_fetch_assoc($menus);
             echo
             '<div class="container1">
                 <div class="leftcon">
                     <div class="left">
-                    <h2 class="titleproduct">' . $Margaritha['nama'] . '</h2>
-                    <P>' . $Margaritha['detail'] . '</P>
-                    <h2 class="price">' . $Margaritha['harga'] . '</h2>
+                    <h2 class="titleproduct">' . implode(' ', explode('_', $menu['nama'])) . '</h2>
+                    <P>' . $menu['detail'] . '</P>
+                    <h2 class="price">' . $menu['harga'] . '</h2>
                     </div>
-                    <div class="right">' . $Margaritha['gambar'] . '</div>
+                    <div class="right">' . $menu['gambar'] . '</div>
                 </div>
                 <div class="rightcon">
-                    <h1>' . $_SESSION['margaritha'] . ' PCS</h1>
-                    <h2>' . $_SESSION['margaritha'] * $Margaritha['harga'] . '</h2>
-                </div>
-            </div>';
-        }
-        if (!empty($_SESSION['pepperoni'])) {
-            echo
-            '<div class="container1">
-                <div class="leftcon">
-                    <div class="left">
-                    <h2 class="titleproduct">' . $Pepperoni['nama'] . '</h2>
-                    <P>' . $Pepperoni['detail'] . '</P>
-                    <h2 class="price">' . $Pepperoni['harga'] . '</h2>
-                    </div>
-                    <div class="right">' . $Pepperoni['gambar'] . '</div>
-                </div>
-                <div class="rightcon">
-                    <h1>' . $_SESSION['pepperoni'] . ' PCS</h1>
-                    <h2>' . $_SESSION['pepperoni'] * $Pepperoni['harga'] . '</h2>
-                </div>
-            </div>';
-        }
-        if (!empty($_SESSION['sausage'])) {
-            echo
-            '<div class="container1">
-                <div class="leftcon">
-                    <div class="left">
-                    </div>
-                    <div class="right">
-                    </div>
-                </div>
-                <div class="rightcon">
-                    <h1>' . $_SESSION['sausage'] . ' PCS</h1>
+                    <h1>' . $value . ' PCS</h1>
+                    <h2>' . $value * $menu['harga'] . '</h2>
                 </div>
             </div>';
         }
         ?>
-
         <div class="container2">
-            <h2>TOTAL PEMBAYARAN : 375K</h2>
+            <h2>TOTAL PEMBAYARAN</h2>
         </div>
         <div class="container3">
             <h2>SUBMIT</h2>
