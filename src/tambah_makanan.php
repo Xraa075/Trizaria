@@ -2,7 +2,7 @@
 
 session_start();
 
-require 'connection.php';
+require 'function.php';
 
 if(!isset($_SESSION["login"])) {
     header("Location: loginadmin.php");
@@ -10,31 +10,19 @@ if(!isset($_SESSION["login"])) {
 }
 
 if(isset($_POST["submit"])) {
-    // Ambil informasi file yang diunggah
-    $fileName = $_FILES["gambar"]["name"];
-    $fileTmpName = $_FILES["gambar"]["tmp_name"];
-    $fileError = $_FILES["gambar"]["error"];
-    $fileType = $_FILES["gambar"]["type"];
-    $fileSize = $_FILES["gambar"]["size"];
-
-    $fileData = file_get_contents($fileTmpName);
+    //melakukan pengecekan data berhasil di tambahkan atau tidak
+    if(tambahMakanan($_POST) > 0){
+        echo "<script>
+            alert('data berhasil ditambahkan');
+            document.location.href = 'dashboard_admin.php';
+        </script>";
+    } else {
+        echo "<script>
+            alert('data gagal ditambahkan!');
+            document.location.href = 'dashboard_admin.php';
+        </script>";
+    }
 }
-
-if(isset($_POST["submit"])) {
-    // $gambar = $_POST["gambar"];
-    $nama = $_POST["nama"];
-    $detail = $_POST["detail"];
-    $harga = $_POST["harga"];
-    $stok = $_POST["stok"];
-
-    $query = "INSERT INTO makanan VALUES ('', '$fileData', '$nama', '$detail', '$harga', '$stok')";
-
-    mysqli_query($conn, $query);
-
-    header("Location: dashboard_admin.php");
-    exit;
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -57,12 +45,12 @@ if(isset($_POST["submit"])) {
                 <h2>Tambah Makanan</h2>
                 <div class="inputgambar">
                     <label for="gambar">Pilih Gambar</label>
-                    <input class="inputgambarchoose" name="gambar" type="file">
+                    <input class="inputgambarchoose" name="gambar" type="file" required>
                 </div>
-                <input class="inputother" name="nama" type="text" placeholder="nama">
-                <input class="inputother" name="detail" type="text" placeholder="detail">
-                <input class="inputother" name="harga" type="number" placeholder="harga">
-                <input class="inputother" name="stok" type="number" placeholder="stok">
+                <input class="inputother" name="nama" type="text" placeholder="nama" required>
+                <input class="inputother" name="detail" type="text" placeholder="detail" required>
+                <input class="inputother" name="harga" type="number" placeholder="harga" required>
+                <input class="inputother" name="stok" type="number" placeholder="stok" required>
                 <button name="submit" type="submit">
                     <h2>Submit</h2>
                 </button>

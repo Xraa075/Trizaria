@@ -42,7 +42,7 @@ $image = $detail["gambar"];
                 <h2><?= $detail["stok"] ?></h2>
             </div>
         </div>
-        <div>
+        <div class="buttonkembali">
             <a href="dashboard_admin.php">
                 <h2>Kembali</h2>
             </a>

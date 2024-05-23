@@ -1,29 +1,18 @@
 <?php
 
+
 session_start();
 
-require 'connection.php';
+require 'function.php';
 
 if(!isset($_SESSION["login"])) {
     header("Location: loginadmin.php");
     exit;
 }
 
-$username_kasir = $_SESSION["user"];
+$resultMakanan = mysqli_query($conn, "SELECT * FROM makanan");
 
-$sql_nama = "SELECT * FROM admin_pizza WHERE username_admin = '$username_kasir'";
-$result_nama = $conn->query($sql_nama);
-
-if($result_nama->num_rows > 0) {
-    $nama = [];
-    while($row = $result_nama->fetch_assoc()) {
-        $nama = htmlspecialchars($row["nama_admin"]);
-    }
-}
-
-$result_makanan = mysqli_query($conn, "SELECT * FROM makanan");
-
-$result_minuman = mysqli_query($conn, "SELECT * FROM minuman");
+$resultMinuman = mysqli_query($conn, "SELECT * FROM minuman");
 
 ?>
 <!DOCTYPE html>
@@ -38,8 +27,8 @@ $result_minuman = mysqli_query($conn, "SELECT * FROM minuman");
 
 <body>
     <div class="container">
-        <img src="asset/logotrizaria.svg">
-        <h1>Selamat datang, <?= $nama ?></h1>
+        <img class="logo" src="asset/logotrizaria.svg">
+        <h1>Selamat datang, <?= tampilNamaAdmin($_SESSION["user"]); ?></h1>
         <div class="container1">
             <h2>Menejemen Makanan</h2>
             <div class="buttontambah">
@@ -59,21 +48,17 @@ $result_minuman = mysqli_query($conn, "SELECT * FROM minuman");
                 <div class="table_body">
 
                     <?php $i = 1; ?>
-                    <?php while($row = mysqli_fetch_assoc($result_makanan)) : ?>
-                    <?php $image = $row["gambar"]; ?>
+                    <?php while($row = mysqli_fetch_assoc($resultMakanan)) : ?>
 
                     <tr>
                         <td><?= $i; ?></td>
                         <td>
-                            <?php print($image); ?>
+                            <img class="gambarmakanan" src="../asset_database/makanan/<?= $row["gambar"]; ?>">
                         </td>
                         <td><?= $row["nama"]; ?></td>
                         <td><?= $row["harga"]; ?></td>
                         <td><?= $row["stok"]; ?></td>
                         <td>
-                            <!-- <a href="">Detail</a> -->
-                            <!-- <a href="">Edit</a>
-                                <a href="">Hapus</a> -->
                             <form method="get" action="detail_makanan.php">
                                 <input type="hidden" name="nama" value="<?= $row['nama']; ?>">
                                 <button type="submit">Detail</button>
@@ -111,13 +96,12 @@ $result_minuman = mysqli_query($conn, "SELECT * FROM minuman");
                 <div class="table_body">
 
                     <?php $i = 1; ?>
-                    <?php while($row = mysqli_fetch_assoc($result_minuman)) : ?>
-                    <?php $image = $row["gambar"]; ?>
+                    <?php while($row = mysqli_fetch_assoc($resultMinuman)) : ?>
 
                     <tr>
                         <td><?= $i; ?></td>
                         <td>
-                            <?php print($image); ?>
+                            <img src="../asset_database/minuman/<?= $row["gambar"]; ?>">
                         </td>
                         <td><?= $row["nama"]; ?></td>
                         <td><?= $row["harga"]; ?></td>

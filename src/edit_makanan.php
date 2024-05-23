@@ -71,8 +71,8 @@ if(isset($_POST["submit"])) {
             <div class="container2">
                 <input name="id" type="hidden" value="<?= $detail["id_makanan"]; ?>">
                 <div class="inputgambar">
-                    <label for="gambar">Ubah Gambar</label>
-                    <input class="inputgambarchoose" name="gambar" type="file" value="<?= print($image); ?>">
+                    <img src="../asset_database/makanan/<?= $row["gambar"]; ?>">
+                    <input class="inputgambarchoose" name="gambar" type="file">
                 </div>
                 <input class="inputother" name="nama" type="text" placeholder="nama" value="<?= $detail["nama"]; ?>">
                 <input class="inputother" name="detail" type="text" placeholder="detail"

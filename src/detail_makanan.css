@@ -67,3 +67,10 @@ svg {
     width: 200px;
     height: 200px;
 }
+
+.buttonkembali {
+    height: 3rem;
+    background-color: #FF9C3D;
+    margin-top: 1rem;
+
+}
