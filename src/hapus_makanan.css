@@ -62,22 +62,6 @@ body {
     align-items: center;
 }
 
-
-.buttonkembali {
-    height: 3rem;
-    background-color: #FF9C3D;
-    margin-top: 1rem;
-    border-radius: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-a {
-    text-decoration: none;
-    color: #323232;
-}
-
 .gambarmakanan {
     height: 80%;
 }

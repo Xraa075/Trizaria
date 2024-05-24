@@ -54,6 +54,10 @@ function tambahMakanan($data) {
     return mysqli_affected_rows($conn);
 }
 
+function editMakanan($data) {
+    
+}
+
 function upload() {
 
     $namafile = $_FILES['gambar']['name'];
@@ -70,7 +74,7 @@ function upload() {
     }
 
     //cek apakah gamabr yang diupload adalah gambar
-    $ekstensiGambarValid = ['svg'];
+    $ekstensiGambarValid = ['svg', 'png'];
     $ekstensiGambar = explode('.', $namafile);
     $ekstensiGambar = strtolower(end($ekstensiGambar));
     if(!in_array($ekstensiGambar, $ekstensiGambarValid)) {
@@ -89,7 +93,7 @@ function upload() {
     }
 
     //setelah melakukan pengecekan, upload gambar
-    move_uploaded_file($tmpName, '/asset_database/makanan/' . $namafile);
+    move_uploaded_file($tmpName, '../asset_database/makanan/' . $namafile);
 
     return $namafile;
 }

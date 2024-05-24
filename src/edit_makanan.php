@@ -2,7 +2,7 @@
 
 session_start();
 
-require 'connection.php';
+require 'function.php';
 
 if(!isset($_SESSION["login"])) {
     header("Location: loginadmin.php");
@@ -13,28 +13,29 @@ $nama = $_GET['nama'];
 
 $select = "SELECT * FROM makanan WHERE nama = '$nama'";
 $sql_select = mysqli_query($conn, $select);
-
 $detail = mysqli_fetch_assoc($sql_select);
-$image = $detail["gambar"];
+
+$namafilekosong = $detail['gambar'];
 
 if(isset($_POST["submit"])) {
-    $fileName = $_FILES["gambar"]["name"];
-    $fileTmpName = $_FILES["gambar"]["tmp_name"];
-    $fileError = $_FILES["gambar"]["error"];
-    $fileType = $_FILES["gambar"]["type"];
-    $fileSize = $_FILES["gambar"]["size"];
 
-    $fileData = file_get_contents($fileTmpName);
-}
+    $namafile = $_FILES['gambar']['name'];
 
-if(isset($_POST["submit"])) {
+    if($namafile == NULL) {
+        $namafile = $namafilekosong;
+    }
+
+    $ukuranfile = $_FILES['gambar']['size'];
+    $error = $_FILES['gambar']['error'];
+    $tmpName = $_FILES['gambar']['tmp_name'];
+
     $id_makanan = $_POST["id"];
     $nama = $_POST["nama"];
     $detail = $_POST["detail"];
     $harga = $_POST["harga"];
     $stok = $_POST["stok"];
 
-    $query = "UPDATE makanan SET gambar = '$fileData', nama = '$nama', detail = '$detail', harga = '$harga', stok = '$stok' WHERE id = '$id_makanan'";
+    $query = "UPDATE makanan SET gambar = '$namafile', nama = '$nama', detail = '$detail', harga = '$harga', stok = '$stok' WHERE id_makanan = '$id_makanan'";
 
     mysqli_query($conn, $query);
 
@@ -58,7 +59,7 @@ if(isset($_POST["submit"])) {
         <img src="asset/logotrizaria.svg">
         <div class="container1">
             <div class="imagecon">
-                <?php print($image); ?>
+                <img class="gambarmakanan" src="../asset_database/makanan/<?= $detail["gambar"]; ?>">
             </div>
             <div class="detailcon">
                 <h2><?= $detail["nama"]; ?></h2>
@@ -71,8 +72,8 @@ if(isset($_POST["submit"])) {
             <div class="container2">
                 <input name="id" type="hidden" value="<?= $detail["id_makanan"]; ?>">
                 <div class="inputgambar">
-                    <img src="../asset_database/makanan/<?= $row["gambar"]; ?>">
-                    <input class="inputgambarchoose" name="gambar" type="file">
+                    <img class="gambarmakananinput" src="../asset_database/makanan/<?= $detail["gambar"]; ?>">
+                    <input class="inputgambarchoose" name="gambar" type="file" value="<?= $detail["gambar"]; ?>">
                 </div>
                 <input class="inputother" name="nama" type="text" placeholder="nama" value="<?= $detail["nama"]; ?>">
                 <input class="inputother" name="detail" type="text" placeholder="detail"

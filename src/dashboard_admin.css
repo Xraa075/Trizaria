@@ -69,6 +69,11 @@ a {
     height: 80px;
 }
 
+.gambarminuman {
+    width: 80px;
+    height: 80px;
+}
+
 .container1 {
     width: 100%;
     color: white;
@@ -113,20 +118,4 @@ tr {
 
 tr:nth-child(odd){
     background-color: #FFD1A5;
-}
-
-
-.gambar {
-    width: 100px;
-    height: 100px;
-}
-
-rect {
-    width: 100%;
-    height: 100%;
-}
-
-svg {
-    width: 100px;
-    height: 100px;
 }

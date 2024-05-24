@@ -41,6 +41,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
+    padding-bottom: 5rem;
 }
 
 .container1 {
@@ -58,16 +59,17 @@ body {
 
 .imagecon {
     margin-right: 3rem;
-}
-
-rect {
-    width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
 }
 
-svg {
-    width: 200px;
-    height: 200px;
+.gambarmakanan {
+    height: 80%;
+}
+
+.gambarmakananinput {
+    height: 80%;
 }
 
 .container2 {
@@ -147,3 +149,4 @@ button {
 input {
     color: #CDCDCD;
 }
+
