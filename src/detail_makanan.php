@@ -15,7 +15,6 @@ $select = "SELECT * FROM makanan WHERE nama = '$nama'";
 $sql_select = mysqli_query($conn, $select);
 
 $detail = mysqli_fetch_assoc($sql_select);
-$image = $detail["gambar"];
 
 ?>
 
@@ -31,9 +30,10 @@ $image = $detail["gambar"];
 
 <body>
     <div class="container">
+        <img class="logo" src="asset/logotrizaria.svg">
         <div class="container1">
             <div class="imagecon">
-                <?php print($image); ?>
+                <img class="gambarmakanan" src="../asset_database/makanan/<?= $detail["gambar"]; ?>">
             </div>
             <div class="detailcon">
                 <h2><?= $detail["nama"] ?></h2>
@@ -44,7 +44,7 @@ $image = $detail["gambar"];
         </div>
         <div class="buttonkembali">
             <a href="dashboard_admin.php">
-                <h2>Kembali</h2>
+                <h2 class="textbutton">Kembali</h2>
             </a>
         </div>
     </div>

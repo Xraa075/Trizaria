@@ -101,7 +101,7 @@ $resultMinuman = mysqli_query($conn, "SELECT * FROM minuman");
                     <tr>
                         <td><?= $i; ?></td>
                         <td>
-                            <img src="../asset_database/minuman/<?= $row["gambar"]; ?>">
+                            <img class="gambarminuman" src="../asset_database/minuman/<?= $row["gambar"]; ?>">
                         </td>
                         <td><?= $row["nama"]; ?></td>
                         <td><?= $row["harga"]; ?></td>
