@@ -18,8 +18,8 @@ $detail = mysqli_fetch_assoc($sql_select);
 
 if(isset($_POST["submit"])) {
     if(isset($_POST["checkbox"])) {
-
-    } else {
+        
+    } else {    
         $error = 'checklist terlebih dahulu jika anda ingin menghapus menu <?= $detail["nama"] ?>';
 }
 }

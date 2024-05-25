@@ -56,7 +56,7 @@ if(isset($_POST["submit"])) {
 
 <body>
     <div class="container">
-        <img src="asset/logotrizaria.svg">
+        <img class="logo" src="asset/logotrizaria.svg">
         <div class="container1">
             <div class="imagecon">
                 <img class="gambarmakanan" src="../asset_database/makanan/<?= $detail["gambar"]; ?>">

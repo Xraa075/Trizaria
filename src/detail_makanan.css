@@ -46,13 +46,16 @@ body {
 
 .container1 {
     height: 15rem;
+    width: 100%;
     background-color: #FFBA78;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     border-radius: 3rem;
     padding-inline-start: 3rem;
     padding-inline-end: 3rem;
+    box-sizing: border-box;
 }
 
 .imagecon {
@@ -65,6 +68,7 @@ body {
 
 .buttonkembali {
     height: 3rem;
+    width: 100%;
     background-color: #FF9C3D;
     margin-top: 1rem;
     border-radius: 1.5rem;
