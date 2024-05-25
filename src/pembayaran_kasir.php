@@ -1,3 +1,15 @@
+<?php
+
+session_start();
+
+if (empty($_SESSION['total'])) {
+    header("Location: menu.php");
+    exit;
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,11 +25,10 @@
         <h1 class="title">Pembayaran</h1>
         <div class="container">
             <div class="container1">
-                <h2 class="text">Total Pembayaran</h2>
-                <h2 class="text">Rp 375.000</h2>
+                <h2 class="text">Total Pembayaran : <?php echo $_SESSION['total'] ?></h2>
                 <input type="text" name="uang_diterima" placeholder="uang diterima">
                 <button type="submit" name="submit">
-                    <h2>Submit</h2>
+                    Submit
                 </button>
             </div>
             <div class="container2">

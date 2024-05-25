@@ -21,6 +21,8 @@
 * {
     margin: 0;
     padding: 0;
+    cursor: pointer;
+    scroll-behavior: smooth;
 }
 
 html {
@@ -49,24 +51,26 @@ body {
 }
 
 .container2 {
+    font-family: PoetsenOne;
+    font-size: 24px;
     background-color: #FFD3A8;
     height: 4rem;
     width: 100%;
     margin-bottom: 2rem;
-    border-radius: 2rem;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .container3 {
+    border: none;
+    font-family: PoetsenOne;
+    font-size: 26px;
     background-color: #FF9C3D;
-    height: 4rem;
+    height: 3.5rem;
     width: 100%;
     border-radius: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .leftcon {
@@ -118,6 +122,7 @@ body {
 
 img {
     width: 8rem;
+    height: 8rem;
 }
 
 rect {

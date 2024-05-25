@@ -20,6 +20,13 @@ if (isset($_POST['submit'])) {
         }
     }
 
+    $_SESSION['total'] = 0;
+    foreach ($_SESSION['menu'] as $key => $value) {
+        $menus = mysqli_query($koneksi, "SELECT * FROM makanan WHERE nama = '$key' UNION SELECT * FROM minuman WHERE nama = '$key'");
+        $menu = mysqli_fetch_assoc($menus);
+        $_SESSION['total'] += $value * $menu['harga'];
+    }
+
     header("Location: order_kasir.php");
     exit;
 }
@@ -67,7 +74,7 @@ if (isset($_POST['submit'])) {
                 <?php endif; ?>
             </div>
             <div id="row_card" style="justify-content: center;">
-                <button type="submit" id="submit" name="submit">submit</button>
+                <button type="submit" id="submit" name="submit">Submit</button>
             </div>
         </div>
         <div id="sub_boxmenu_minum">
@@ -87,7 +94,7 @@ if (isset($_POST['submit'])) {
                 <?php endif; ?>
             </div>
             <div id="row_card" style="justify-content: center;">
-                <button type="submit" id="submit" name="submit">submit</button>
+                <button type="submit" id="submit" name="submit">Submit</button>
             </div>
         </div>
     </form>

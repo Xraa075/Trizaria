@@ -20,6 +20,7 @@
 
 * {
     scroll-behavior: smooth;
+    cursor: pointer;
 }
 
 body {
@@ -154,7 +155,7 @@ svg {
 }
 
 #submit {
-    font-family: Poly;
+    font-family: PoetsenOne;
     font-size: 32px;
     border: none;
     width: 77%;
