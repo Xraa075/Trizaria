@@ -1,10 +1,7 @@
 <?php
-
 require 'koneksi.php';
 session_start();
-
 $error = false;
-
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     header("Location: dashboard_kasir.php");
     exit;
@@ -20,7 +17,7 @@ if (isset($_POST['login'])) {
             $row = mysqli_fetch_assoc($result);
             if ($valid_password === $row["password_kasir"]) {
                 $_SESSION['logged_in'] = true;
-                $_SESSION['nama'] = $row['nama_kasir'];
+                $_SESSION['nama_kasir'] = $row['nama_kasir'];
                 header("Location: dashboard_kasir.php");
                 exit;
             }

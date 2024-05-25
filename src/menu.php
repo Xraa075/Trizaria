@@ -1,5 +1,4 @@
 <?php
-
 require 'koneksi.php';
 session_start();
 
@@ -21,6 +20,8 @@ if (isset($_POST['submit'])) {
     }
 
     $_SESSION['total'] = 0;
+    $_SESSION['kembalian'] = 0;
+    
     foreach ($_SESSION['menu'] as $key => $value) {
         $menus = mysqli_query($koneksi, "SELECT * FROM makanan WHERE nama = '$key' UNION SELECT * FROM minuman WHERE nama = '$key'");
         $menu = mysqli_fetch_assoc($menus);
@@ -30,7 +31,6 @@ if (isset($_POST['submit'])) {
     header("Location: order_kasir.php");
     exit;
 }
-
 ?>
 
 <html>
@@ -54,7 +54,6 @@ if (isset($_POST['submit'])) {
             <div id="switchminuman" onclick="tampilminum()">Drink</div>
         </div>
     </div>
-
     <div id="welcome">WELCOME <?php echo htmlspecialchars($_SESSION['nama_pembeli']); ?></div>
     <form id="boxmenu" action="" method="POST">
         <div id="sub_boxmenu_makan">

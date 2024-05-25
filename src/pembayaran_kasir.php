@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 if (empty($_SESSION['total'])) {
@@ -7,8 +6,14 @@ if (empty($_SESSION['total'])) {
     exit;
 }
 
+if (isset($_POST['submit'])) {
+    $uang_diterima = $_POST['uang_diterima'];
+    $_SESSION['uangditerima'] = $uang_diterima;
+    $total = $_SESSION['total'];
+    $kembalian = $uang_diterima - $total;
+    $_SESSION['kembalian'] = $kembalian;
+}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,25 +26,20 @@ if (empty($_SESSION['total'])) {
 </head>
 
 <body>
-    <form>
-        <h1 class="title">Pembayaran</h1>
-        <div class="container">
-            <div class="container1">
-                <h2 class="text">Total Pembayaran : <?php echo $_SESSION['total'] ?></h2>
-                <input type="text" name="uang_diterima" placeholder="uang diterima">
-                <button type="submit" name="submit">
-                    Submit
-                </button>
-            </div>
-            <div class="container2">
-                <h2 class="text">Uang Kembali</h2>
-                <h2 class="text">Rp 25.000</h2>
-                <button type="submit" name="cetak">
-                    <h2>Cetak Struk Transaksi</h2>
-                </button>
-            </div>
+    <h1 class="title">Pembayaran</h1>
+    <div class="container">
+        <form class="container1" action="" method="POST">
+            <h2 class="text">Total Pembayaran : <?php echo $_SESSION['total'] ?></h2>
+            <input type="number" name="uang_diterima" placeholder="<?php echo isset($_SESSION['uangditerima']) ? $_SESSION['uangditerima'] : 0; ?>" required>
+            <button type="submit" name="submit">Submit</button>
+        </form>
+        <div class="container2">
+            <h2 class="text">Uang Kembali : <?php echo isset($_SESSION['kembalian']) ? $_SESSION['kembalian'] : 0; ?></h2>
+            <button type="button" name="cetak" onclick="window.location = 'struk.php'">
+                Cetak Struk Transaksi
+            </button>
         </div>
-    </form>
+    </div>
 </body>
 
 </html>

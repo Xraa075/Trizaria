@@ -1,5 +1,4 @@
 <?php
-
 require 'koneksi.php';
 session_start();
 
@@ -7,7 +6,6 @@ if (empty($_SESSION['total'])) {
     header("Location: menu.php");
     exit;
 }
-
 ?>
 
 <!DOCTYPE html>
