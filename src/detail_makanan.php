@@ -42,11 +42,11 @@ $detail = mysqli_fetch_assoc($sql_select);
                 <h2><?= $detail["stok"] ?></h2>
             </div>
         </div>
-        <div class="buttonkembali">
-            <a href="dashboard_admin.php">
+        <a href="dashboard_admin.php">
+            <div class="buttonkembali">
                 <h2 class="textbutton">Kembali</h2>
-            </a>
-        </div>
+            </div>
+        </a>
     </div>
 </body>
 

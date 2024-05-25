@@ -46,13 +46,30 @@ body {
 
 .container1 {
     height: 15rem;
+    width: 100%;
     background-color: #FFBA78;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    align-items: center;
     border-radius: 3rem;
     padding-inline-start: 3rem;
     padding-inline-end: 3rem;
+    box-sizing: border-box;
+}
+
+.container2 {
+    height: 100%;
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.concheck {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    color: #FFBA78;
 }
 
 .imagecon {
@@ -64,4 +81,25 @@ body {
 
 .gambarmakanan {
     height: 80%;
+}
+
+.checkbox {
+    margin-right: 1rem;
+    height: 1rem;
+    width: 1rem;
+    border: none;
+    border-radius: 0.25rem;
+}
+
+form {
+    width: 100%;
+}
+
+button {
+    margin-top: 1rem;
+    width: 100%;
+    background-color: #FFBA78;
+    border: none;
+    height: 3rem;
+    border-radius: 1.5rem;
 }

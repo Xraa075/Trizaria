@@ -17,8 +17,13 @@ $sql_select = mysqli_query($conn, $select);
 $detail = mysqli_fetch_assoc($sql_select);
 
 if(isset($_POST["submit"])) {
+
+    $id = $_POST["id"];
+
     if(isset($_POST["checkbox"])) {
-        
+        mysqli_query($conn, "DELETE FROM makanan WHERE id_makanan = $id");
+        header("Location: dashboard_admin.php");
+        exit;
     } else {    
         $error = 'checklist terlebih dahulu jika anda ingin menghapus menu <?= $detail["nama"] ?>';
 }
@@ -50,16 +55,20 @@ if(isset($_POST["submit"])) {
                 <h2><?= $detail["stok"] ?></h2>
             </div>
         </div>
-        <form>
-            <input name="id" type="hidden" value="<?= $detail["id_makanan"] ?>">
-            <input name="checkbox" type="checkbox">
-            <p>Apakah anda yakin menghapus menu <?= $detail["nama"] ?> ?</p>
-            <div class="buttonkembali">
-                <button name="submit" type="submit">
-                    <h2>Hapus</h2>
-                </button>
-            </div>
-        </form>
+        <div class="container2">
+            <form method="post" action="">
+                <div class="concheck">
+                    <input name="id" type="hidden" value="<?= $detail["id_makanan"] ?>">
+                    <input class="checkbox" name="checkbox" type="checkbox">
+                    <p>Apakah anda yakin menghapus menu <?= $detail["nama"] ?> ?</p>
+                </div>
+                <div class="buttonkembali">
+                    <button name="submit" type="submit">
+                        <h2>Hapus</h2>
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 
