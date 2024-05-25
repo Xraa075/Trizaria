@@ -18,6 +18,7 @@ if (isset($_POST['login'])) {
             if ($valid_password === $row["password_kasir"]) {
                 $_SESSION['logged_in'] = true;
                 $_SESSION['nama_kasir'] = $row['nama_kasir'];
+                $_SESSION['id_kasir'] = $row['id_kasir'];
                 header("Location: dashboard_kasir.php");
                 exit;
             }

@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'koneksi.php';
 
 if (empty($_SESSION['total'])) {
     header("Location: menu.php");
@@ -12,6 +13,10 @@ if (isset($_POST['submit'])) {
     $total = $_SESSION['total'];
     $kembalian = $uang_diterima - $total;
     $_SESSION['kembalian'] = $kembalian;
+
+    //update data ke database
+    $query = "INSERT INTO pembayaran (jumlah_pembayaran, uang_diterima, uang_kembalian) VALUES ('$total', '$uang_diterima', '$kembalian')";
+    $result = mysqli_query($koneksi, $query);
 }
 ?>
 

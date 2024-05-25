@@ -14,6 +14,16 @@ if (empty($_SESSION['nama_pembeli'])) {
 }
 
 if (isset($_POST['logout'])) {
+
+    //update data transaksi ke database sebelum session dihapus
+    $id_kasir = $_SESSION['id_kasir'];
+    $nomor_transaksi = $nomor_bill;
+    $tanggal_transaksi = $tanggal;
+    $nama_pembeli = $_SESSION['nama_pembeli'];
+    $query = "INSERT INTO transaksi (id_kasir, no_transaksi, tanggal_transaksi, nama_pelanggan) VALUES ('$id_kasir', '$nomor_transaksi', '$tanggal_transaksi', '$nama_pembeli')";
+    $result = mysqli_query($koneksi, $query);
+
+    //menghapus session setelah data transaksi disimpan
     unset($_SESSION['nama_pembeli']);
     unset($_SESSION['menu']);
     unset($_SESSION['total']);
@@ -102,7 +112,9 @@ if (isset($_POST['logout'])) {
                 <div class="col"><?php echo $_SESSION['kembalian'] ?></div>
             </div>
         </div>
-        <form method="POST"><button class="submit-button" name="logout">Submit</button></form>
+        <form method="POST">
+            <button class="submit-button" name="logout">Submit</button>
+        </form>
     </div>
 </body>
 

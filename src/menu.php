@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
 
     $_SESSION['total'] = 0;
     $_SESSION['kembalian'] = 0;
-    
+
     foreach ($_SESSION['menu'] as $key => $value) {
         $menus = mysqli_query($koneksi, "SELECT * FROM makanan WHERE nama = '$key' UNION SELECT * FROM minuman WHERE nama = '$key'");
         $menu = mysqli_fetch_assoc($menus);
@@ -65,7 +65,13 @@ if (isset($_POST['submit'])) {
                             <div id="judul"><?= htmlspecialchars($row['nama']); ?></div>
                             <div id="deskripsi"><?= htmlspecialchars($row['detail']); ?></div>
                             <div id="box_harga"><?= htmlspecialchars($row['harga']); ?></div><br>
-                            <input type="number" id="inputItem" name="<?= htmlspecialchars($row['nama']); ?>" placeholder="0">
+                            <input type="number" id="inputItem" name="<?= htmlspecialchars($row['nama']); ?>" min="0" max="<?= htmlspecialchars($row['stok']); ?>" placeholder="0">
+                            <div id="infostok">Stok <?php if ($row['stok'] != 0) {
+                                                        echo htmlspecialchars($row['stok']);
+                                                    } else {
+                                                        echo "Habis";
+                                                    } ?>
+                            </div>
                         </div>
                     <?php endwhile; ?>
                 <?php else : ?>
@@ -85,7 +91,13 @@ if (isset($_POST['submit'])) {
                             <div id="judul"><?= htmlspecialchars($row['nama']); ?></div>
                             <div id="deskripsi"><?= htmlspecialchars($row['detail']); ?></div>
                             <div id="box_harga"><?= htmlspecialchars($row['harga']); ?></div><br>
-                            <input type="number" id="inputItem" name="<?= htmlspecialchars($row['nama']); ?>" placeholder="0">
+                            <input type="number" id="inputItem" name="<?= htmlspecialchars($row['nama']); ?>" min="0" max="<?= htmlspecialchars($row['stok']); ?>" placeholder="0">
+                            <div id="infostok">Stok <?php if ($row['stok'] != 0) {
+                                                        echo htmlspecialchars($row['stok']);
+                                                    } else {
+                                                        echo "Habis";
+                                                    } ?>
+                            </div>
                         </div>
                     <?php endwhile; ?>
                 <?php else : ?>
