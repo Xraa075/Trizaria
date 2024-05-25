@@ -1,5 +1,4 @@
 <?php
-
 require 'koneksi.php';
 session_start();
 
@@ -20,10 +19,18 @@ if (isset($_POST['submit'])) {
         }
     }
 
+    $_SESSION['total'] = 0;
+    $_SESSION['kembalian'] = 0;
+
+    foreach ($_SESSION['menu'] as $key => $value) {
+        $menus = mysqli_query($koneksi, "SELECT * FROM makanan WHERE nama = '$key' UNION SELECT * FROM minuman WHERE nama = '$key'");
+        $menu = mysqli_fetch_assoc($menus);
+        $_SESSION['total'] += $value * $menu['harga'];
+    }
+
     header("Location: order_kasir.php");
     exit;
 }
-
 ?>
 
 <html>
@@ -47,51 +54,58 @@ if (isset($_POST['submit'])) {
             <div id="switchminuman" onclick="tampilminum()">Drink</div>
         </div>
     </div>
-
     <div id="welcome">WELCOME <?php echo htmlspecialchars($_SESSION['nama_pembeli']); ?></div>
     <form id="boxmenu" action="" method="POST">
         <div id="sub_boxmenu_makan">
             <div id="row_card">
-                <?php
-                if ($makanan_table_row) {
-                    while ($row = mysqli_fetch_assoc($makanan_table_row)) {
-                        echo '<div id="card_menu">';
-                        htmlspecialchars(print($row['gambar']));
-                        echo '<div id="judul">' . htmlspecialchars($row['nama']) . '</div>';
-                        echo '<div id="deskripsi">' . htmlspecialchars($row['detail']) . '</div>';
-                        echo '<div id="box_harga">' . htmlspecialchars($row['harga']) . '</div><br>';
-                        echo '<input type="number" id="inputItem" name="' . htmlspecialchars($row['nama']) . '" placeholder="0">';
-                        echo '</div>';
-                    }
-                } else {
-                    echo "Gagal mengambil data dari tabel makanan.";
-                }
-                ?>
+                <?php if ($makanan_table_row) : ?>
+                    <?php while ($row = mysqli_fetch_assoc($makanan_table_row)) : ?>
+                        <div id="card_menu">
+                            <img src="../asset_database/makanan/<?= $row["gambar"]; ?>">
+                            <div id="judul"><?= htmlspecialchars($row['nama']); ?></div>
+                            <div id="deskripsi"><?= htmlspecialchars($row['detail']); ?></div>
+                            <div id="box_harga"><?= htmlspecialchars($row['harga']); ?></div><br>
+                            <input type="number" id="inputItem" name="<?= htmlspecialchars($row['nama']); ?>" min="0" max="<?= htmlspecialchars($row['stok']); ?>" placeholder="0">
+                            <div id="infostok">Stok <?php if ($row['stok'] != 0) {
+                                                        echo htmlspecialchars($row['stok']);
+                                                    } else {
+                                                        echo "Habis";
+                                                    } ?>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                <?php else : ?>
+                    <div>Gagal mengambil data dari tabel makanan.</div>
+                <?php endif; ?>
             </div>
             <div id="row_card" style="justify-content: center;">
-                <button type="submit" id="submit" name="submit">submit</button>
+                <button type="submit" id="submit" name="submit">Submit</button>
             </div>
         </div>
         <div id="sub_boxmenu_minum">
             <div id="row_card">
-                <?php
-                if ($minuman_table_row) {
-                    while ($row = mysqli_fetch_assoc($minuman_table_row)) {
-                        echo '<div id="card_menu">';
-                        htmlspecialchars(print($row['gambar']));
-                        echo '<div id="judul">' . htmlspecialchars($row['nama']) . '</div>';
-                        echo '<div id="deskripsi">' . htmlspecialchars($row['detail']) . '</div>';
-                        echo '<div id="box_harga">' . htmlspecialchars($row['harga']) . '</div><br>';
-                        echo '<input type="number" id="inputItem" name="' . htmlspecialchars($row['nama']) . '" placeholder="0">';
-                        echo '</div>';
-                    }
-                } else {
-                    echo "Gagal mengambil data dari tabel minuman.";
-                }
-                ?>
+                <?php if ($minuman_table_row) : ?>
+                    <?php while ($row = mysqli_fetch_assoc($minuman_table_row)) : ?>
+                        <div id="card_menu">
+                            <img src="../asset_database/minuman/<?= $row["gambar"]; ?>">
+                            <div id="judul"><?= htmlspecialchars($row['nama']); ?></div>
+                            <div id="deskripsi"><?= htmlspecialchars($row['detail']); ?></div>
+                            <div id="box_harga"><?= htmlspecialchars($row['harga']); ?></div><br>
+                            <input type="number" id="inputItem" name="<?= htmlspecialchars($row['nama']); ?>" min="0" max="<?= htmlspecialchars($row['stok']); ?>" placeholder="0">
+                            <div id="infostok">Stok <?php if ($row['stok'] != 0) {
+                                                        echo htmlspecialchars($row['stok']);
+                                                    } else {
+                                                        echo "Habis";
+                                                    } ?>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                <?php else : ?>
+                    <div>Gagal mengambil data dari tabel minuman.</div>
+                <?php endif; ?>
             </div>
             <div id="row_card" style="justify-content: center;">
-                <button type="submit" id="submit" name="submit">submit</button>
+                <button type="submit" id="submit" name="submit">Submit</button>
             </div>
         </div>
     </form>

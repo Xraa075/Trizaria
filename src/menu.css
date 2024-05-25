@@ -20,6 +20,7 @@
 
 * {
     scroll-behavior: smooth;
+    cursor: pointer;
 }
 
 body {
@@ -153,8 +154,14 @@ svg {
     border: 2px solid #FF9C3D;
 }
 
+#infostok {
+    font-family: InterReg;
+    font-size: 16px;
+    color: #eee;
+}
+
 #submit {
-    font-family: Poly;
+    font-family: PoetsenOne;
     font-size: 32px;
     border: none;
     width: 77%;

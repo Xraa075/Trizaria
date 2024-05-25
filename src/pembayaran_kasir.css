@@ -21,6 +21,8 @@
 * {
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
+    cursor: pointer;
 }
 
 html {
@@ -46,6 +48,7 @@ body {
 
 .text {
     font-family: PoetsenOne;
+    font-weight: 100;
     letter-spacing: 1px;
     color: white;
 }
@@ -74,14 +77,21 @@ body {
 }
 
 input {
+    border: none;
+    outline: none;
     background-color: transparent;
     border: solid;
     border-color: #FF9C3D;
     width: 100%;
-    height: 4rem;
+    height: 3.5rem;
     border-radius: 2rem;
     margin-top: 2rem;
-    /* margin-inline-start: 2rem; */
+}
+
+#input::-webkit-inner-spin-button,
+#input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 input::placeholder {
@@ -91,13 +101,14 @@ input::placeholder {
 
 input:focus {
     border-color: #FF9C3D;
-    outline: none;
 }
 
 button {
+    font-family: PoetsenOne;
+    font-size: 24px;
     background-color: #FF9C3D;
     width: 100%;
-    height: 4rem;
+    height: 3.5rem;
     border: none;
     border-radius: 2rem;
     margin-top: 1rem;

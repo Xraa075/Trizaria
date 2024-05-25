@@ -27,8 +27,9 @@ if (isset($_POST['logout'])) {
         <img src="asset/logotrizaria.svg">
         <div id="tagline">Slice into happiness your perfect pizza experience</div>
         <button id="neworder" onclick="window.location = 'inputnama_kasir.php'">New Order</button>
+        <br>
         <form method="POST">
-            <button type="submit" name="logout">LOGOUT</button>
+            <button type="submit" id="neworder" name="logout">LOGOUT</button>
         </form>
     </div>
 </body>
