@@ -82,6 +82,9 @@ $resultMinuman = mysqli_query($conn, "SELECT * FROM minuman");
         </div>
         <div class="container2">
             <h2>Menejemen Minuman</h2>
+            <div class="buttontambah">
+                <a href="tambah_makanan.php">Tambah Menu Minuman</a>
+            </div>
             <table>
                 <div class="table_head">
                     <tr>
@@ -107,9 +110,18 @@ $resultMinuman = mysqli_query($conn, "SELECT * FROM minuman");
                         <td><?= $row["harga"]; ?></td>
                         <td><?= $row["stok"]; ?></td>
                         <td>
-                            <a href="">Detail</a>
-                            <a href="">Edit</a>
-                            <a href="">Hapus</a>
+                            <form method="get" action="detail_minuman.php">
+                                <input type="hidden" name="nama" value="<?= $row['nama']; ?>">
+                                <button type="submit">Detail</button>
+                            </form>
+                            <form method="get" action="edit_minuman.php">
+                                <input type="hidden" name="nama" value="<?= $row['nama']; ?>">
+                                <button type="submit">Edit</button>
+                            </form>
+                            <form method="get" action="hapus_minuman.php">
+                                <input type="hidden" name="nama" value="<?= $row['nama']; ?>">
+                                <button type="submit">Hapus</button>
+                            </form>
                         </td>
                     </tr>
 

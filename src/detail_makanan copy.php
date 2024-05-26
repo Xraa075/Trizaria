@@ -48,6 +48,7 @@ $detail = mysqli_fetch_assoc($sql_select);
             </div>
         </a>
     </div>
+    </div>
 </body>
 
 
