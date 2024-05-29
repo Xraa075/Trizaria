@@ -1,18 +1,19 @@
-<?php
+<?php 
+session_start(); 
+require 'function.php' ; 
+if(!isset($_SESSION["login"])) { 
+    header("Location: loginadmin.php");
+    exit; 
+} 
+$resultMakanan=mysqli_query($conn, "SELECT * FROM makanan" );
+$resultMinuman=mysqli_query($conn, "SELECT * FROM minuman" ); 
 
-
-session_start();
-
-require 'function.php';
-
-if(!isset($_SESSION["login"])) {
+if (isset($_POST["logout"])) {
+    unset($_SESSION['login']);
+    unset($_SESSION['user']);
     header("Location: loginadmin.php");
     exit;
 }
-
-$resultMakanan = mysqli_query($conn, "SELECT * FROM makanan");
-
-$resultMinuman = mysqli_query($conn, "SELECT * FROM minuman");
 
 ?>
 <!DOCTYPE html>
@@ -61,15 +62,15 @@ $resultMinuman = mysqli_query($conn, "SELECT * FROM minuman");
                         <td>
                             <form method="get" action="detail_makanan.php">
                                 <input type="hidden" name="nama" value="<?= $row['nama']; ?>">
-                                <button type="submit">Detail</button>
+                                <button class="crud" type="submit">Detail</button>
                             </form>
                             <form method="get" action="edit_makanan.php">
                                 <input type="hidden" name="nama" value="<?= $row['nama']; ?>">
-                                <button type="submit">Edit</button>
+                                <button class="crud" type="submit">Edit</button>
                             </form>
                             <form method="get" action="hapus_makanan.php">
                                 <input type="hidden" name="nama" value="<?= $row['nama']; ?>">
-                                <button type="submit">Hapus</button>
+                                <button class="crud" type="submit">Hapus</button>
                             </form>
                         </td>
                     </tr>
@@ -112,25 +113,30 @@ $resultMinuman = mysqli_query($conn, "SELECT * FROM minuman");
                         <td>
                             <form method="get" action="detail_minuman.php">
                                 <input type="hidden" name="nama" value="<?= $row['nama']; ?>">
-                                <button type="submit">Detail</button>
+                                <button class="crud" type="submit">Detail</button>
                             </form>
                             <form method="get" action="edit_minuman.php">
                                 <input type="hidden" name="nama" value="<?= $row['nama']; ?>">
-                                <button type="submit">Edit</button>
+                                <button class="crud" type="submit">Edit</button>
                             </form>
                             <form method="get" action="hapus_minuman.php">
                                 <input type="hidden" name="nama" value="<?= $row['nama']; ?>">
-                                <button type="submit">Hapus</button>
+                                <button class="crud" type="submit">Hapus</button>
                             </form>
                         </td>
                     </tr>
 
                     <?php $i++; ?>
                     <?php endwhile; ?>
-
-                </div>
             </table>
         </div>
+        <a class="linkbutton">
+            <form action="" method="POST">
+                <button name="logout" class="textbutton">Log Out</button>
+            </form>
+        </a>
+        <br>
+    </div>
     </div>
 </body>
 

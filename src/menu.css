@@ -19,155 +19,77 @@
 }
 
 * {
-    scroll-behavior: smooth;
-    cursor: pointer;
+    margin: 0;
+    padding: 0;
 }
 
-body {
-    background: url(asset/BgMenuMakanan.svg) no-repeat;
-}
-
-#header {
-    width: 100%;
-    height: 502px;
-    display: flex;
-    color: white;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#ourmenuheader {
-    font-family: PoetsenOne;
-    font-size: 96px;
-}
-
-#switchmenu {
-    width: 317px;
-    height: 48px;
-    font-family: Poly;
-    font-size: 40px;
-    display: flex;
-    justify-content: space-around;
-}
-
-#switchmakanan {
-    color: #FF9C3D;
-}
-
-#welcome {
-    width: 100%;
-    height: 100px;
-    text-align: center;
-    font-family: PoetsenOne;
-    font-size: 36px;
-    color: white;
-}
-
-#boxmenu {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#sub_boxmenu_makan,
-#sub_boxmenu_minum {
-    width: 95%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-#sub_boxmenu_minum {
-    display: none;
-}
-
-#row_card {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-#card_menu {
-    height: auto;
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 5rem;
-}
-
-rect {
+html {
+    margin: 0;
+    padding: 0;
     width: 100%;
     height: 100%;
 }
 
-svg {
-    width: 300px;
-    height: 300px;
+body {
+    height: 100%;
+    margin-inline-start: 10rem;
+    margin-inline-end: 10rem;
+    background-color: #323232;
 }
 
-#judul {
-    font-family: InterBold;
-    font-size: 36px;
-    color: #FF9C3D;
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
-#deskripsi {
-    font-family: Poly;
-    font-size: 20px;
+.container1 {
+    height: 15rem;
+    background-color: #FFBA78;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 20px;
+    padding-inline-start: 3rem;
+    padding-inline-end: 3rem;
+}
+
+.detailcon{
+    margin-top: 40px;
+}
+.detailcon h2, .detailcon p {
+    margin-bottom: 5px;
+}
+.detailcon h2:last-child {
+    margin-bottom: 0;
+}
+
+.imagecon {
+    margin-right: 3rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.gambarmakanan {
+    height: 80%;
+}
+
+label{
     color: white;
-    text-align: center;
 }
-
-#box_harga {
-    color: white;
-    font-family: Poly;
-    font-size: xx-large;
+form{
+    margin-top: 20px;
 }
-
-#inputItem {
-    border: none;
-    background-color: transparent;
-    width: 105px;
-    height: 44px;
-    border-radius: 5px;
-    text-align: center;
-    font-family: InterReg;
-    font-size: 18px;
-    color: white;
-    border: 2px solid #FF9C3D;
-    outline: none;
+.buttonkembali{
+    margin-top: 10px;
 }
+.buttonkembali button{
+    background-color: #FF9C3D;
+    border: 2px solid #FFBA78;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 8px;
 
-#inputItem::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-#inputItem:focus {
-    border: 2px solid #FF9C3D;
-}
-
-#infostok {
-    font-family: InterReg;
-    font-size: 16px;
-    color: #eee;
-}
-
-#submit {
-    font-family: PoetsenOne;
-    font-size: 32px;
-    border: none;
-    width: 77%;
-    height: 60px;
-    border-radius: 50px;
-    background: #FF9C3D;
-    margin-top: 50px;
-    margin-bottom: 100px;
 }

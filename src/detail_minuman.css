@@ -46,16 +46,25 @@ body {
 
 .container1 {
     height: 15rem;
-    width: 100%;
     background-color: #FFBA78;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    border-radius: 3rem;
+    justify-content: center;
+    border-radius: 20px;
     padding-inline-start: 3rem;
     padding-inline-end: 3rem;
-    box-sizing: border-box;
 }
+
+.detailcon{
+    margin-top: 40px;
+}
+.detailcon h2, .detailcon p {
+    margin-bottom: 5px;
+}
+.detailcon h2:last-child {
+    margin-bottom: 0;
+}
+
 
 .imagecon {
     margin-right: 3rem;
@@ -64,19 +73,24 @@ body {
     align-items: center;
 }
 
-a {
-    text-decoration: none;
-    color: #323232;
+
+.buttonkembali {
     height: 3rem;
-    width: 100%;
-    background-color: #FFBA78;
+    background-color: #FF9C3D;
     margin-top: 1rem;
-    border-radius: 1.5rem;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 2px solid #FFBA78;
 }
 
+a {
+    text-decoration: none;
+    color: #323232;
+}
 
 .gambarmakanan {
     height: 80%;

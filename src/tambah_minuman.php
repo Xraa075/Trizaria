@@ -44,8 +44,9 @@ if(isset($_POST["submit"])) {
             <div class="container1">
                 <h2>Tambah Minuman</h2>
                 <div class="inputgambar">
-                    <label for="gambar">Pilih Gambar</label>
-                    <input class="inputgambarchoose" name="gambar" type="file" required>
+                    <label for="file-upload" class="custom-file-label">Pilih Gambar</label>
+                    <input class="file-input" name="gambar" type="file" id="file-upload" required>
+                    <span id="file-name" class="file-name"></span>
                 </div>
                 <input class="inputother" name="nama" type="text" placeholder="nama" required>
                 <input class="inputother" name="detail" type="text" placeholder="detail" required>

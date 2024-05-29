@@ -150,3 +150,20 @@ input {
     color: #CDCDCD;
 }
 
+.file-input {
+    display: none;
+}
+
+.custom-file-label {
+    display: inline-block;
+    background-color: transparent;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.file-name {
+    margin-left: 10px;
+    display: none;
+}

@@ -35,6 +35,7 @@ body {
     margin-inline-start: 10rem;
     margin-inline-end: 10rem;
     background-color: #323232;
+    
 }
 
 .container {
@@ -90,6 +91,7 @@ body {
     padding-left: 1.5rem;
     padding-right: -2rem;
     font-size: medium;
+    color: white;
 }
 
 input::placeholder {
@@ -119,4 +121,28 @@ button {
 
 h2 {
     color: white;
+}
+
+.file-input {
+    display: none;
+}
+
+.inputgambar {
+    display: flex;
+    align-items: center;
+}
+
+.custom-file-label {
+    display: inline-block;
+    background-color: transparent;
+    color: white;
+    padding: 10px 3px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.file-name {
+    margin-left: 10px;
+    display: none;
 }
