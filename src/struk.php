@@ -20,7 +20,7 @@ if (isset($_POST['logout'])) {
     $nomor_transaksi = $nomor_bill;
     $tanggal_transaksi = $tanggal;
     $nama_pembeli = $_SESSION['nama_pembeli'];
-    $query = "INSERT INTO transaksi (id_kasir, no_transaksi, tanggal_transaksi, nama_pelanggan) VALUES ('$id_kasir', '$nomor_transaksi', '$tanggal_transaksi', '$nama_pembeli')";
+    $query = "INSERT INTO transaksi (id_kasir, no_transaksi, nama_pelanggan) VALUES ('$id_kasir', '$nomor_transaksi', '$nama_pembeli')";
     $result = mysqli_query($koneksi, $query);
 
     //menghapus session setelah data transaksi disimpan

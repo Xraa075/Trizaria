@@ -17,6 +17,14 @@ if (isset($_POST['submit'])) {
     //update data ke database
     $query = "INSERT INTO pembayaran (jumlah_pembayaran, uang_diterima, uang_kembalian) VALUES ('$total', '$uang_diterima', '$kembalian')";
     $result = mysqli_query($koneksi, $query);
+    
+    // //mengambil id pembayaran
+    // $qu = "SELECT * FROM pembayaran ORDER BY id_pembayaran DESC LIMIT 1";
+    // $res = mysqli_query($koneksi, $qu);
+    // $res = mysqli_fetch_assoc($res);
+    // $pid = $res['id_pembayaran'];
+
+    // var_dump($res);
 }
 ?>
 
