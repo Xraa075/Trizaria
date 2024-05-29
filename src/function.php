@@ -41,7 +41,31 @@ function tambahMakanan($data) {
     $stok = htmlspecialchars($data["stok"]);
 
     //upload gambar 
-    $gambar = upload();
+    $gambar = uploadMakanan();
+    if(!$gambar) {
+        return false;
+    }
+
+    //query untuk melakukan insert data makanan
+    $query = "INSERT INTO makanan VALUES ('', '$gambar', '$nama', '$detail', '$harga', '$stok')";
+    mysqli_query($conn, $query);
+
+    //mengembalikan nilai apakah data berhasil di submit atau tidak
+    return mysqli_affected_rows($conn);
+}
+
+function tambahMinuman($data) {
+    
+    //memanggil variabel global $conn
+    global $conn;
+
+    $nama = htmlspecialchars($data["nama"]);
+    $detail = htmlspecialchars($data["detail"]);
+    $harga = htmlspecialchars($data["harga"]);
+    $stok = htmlspecialchars($data["stok"]);
+
+    //upload gambar 
+    $gambar = uploadMinuman();
     if(!$gambar) {
         return false;
     }
@@ -58,7 +82,7 @@ function editMakanan($data) {
     
 }
 
-function upload() {
+function uploadMakanan() {
 
     $namafile = $_FILES['gambar']['name'];
     $ukuranfile = $_FILES['gambar']['size'];
@@ -94,6 +118,46 @@ function upload() {
 
     //setelah melakukan pengecekan, upload gambar
     move_uploaded_file($tmpName, '../asset_database/makanan/' . $namafile);
+
+    return $namafile;
+}
+
+function uploadMinuman() {
+
+    $namafile = $_FILES['gambar']['name'];
+    $ukuranfile = $_FILES['gambar']['size'];
+    $error = $_FILES['gambar']['error'];
+    $tmpName = $_FILES['gambar']['tmp_name'];
+
+    //cek apakah ada gambar yang diupload
+    if($error === 4) {
+        echo "<script>
+            alert('Masukkan gambar terlebih dahulu');
+        </script>";
+        return false;
+    }
+
+    //cek apakah gamabr yang diupload adalah gambar
+    $ekstensiGambarValid = ['svg', 'png'];
+    $ekstensiGambar = explode('.', $namafile);
+    $ekstensiGambar = strtolower(end($ekstensiGambar));
+    if(!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+        echo "<script>
+            alert('gunakan format gambar yang benar');
+        </script>";
+        return false;
+    }
+
+    //cek jika ukuran gambar terlalu besar
+    if($ukuranfile > 15728640) {
+        echo "<script>
+            alert('ukuran gambar terlalu besar');
+        </script>";
+        return false;
+    }
+
+    //setelah melakukan pengecekan, upload gambar
+    move_uploaded_file($tmpName, '../asset_database/minuman/' . $namafile);
 
     return $namafile;
 }
