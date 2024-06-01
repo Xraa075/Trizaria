@@ -59,24 +59,23 @@ if (isset($_POST['submit'])) {
         <div id="sub_boxmenu_makan">
             <div id="row_card">
                 <?php if ($makanan_table_row) : ?>
-                <?php while ($row = mysqli_fetch_assoc($makanan_table_row)) : ?>
-                <div id="card_menu">
-                    <img src="../asset_database/makanan/<?= $row["gambar"]; ?>">
-                    <div id="judul"><?= htmlspecialchars($row['nama']); ?></div>
-                    <div id="deskripsi"><?= htmlspecialchars($row['detail']); ?></div>
-                    <div id="box_harga"><?= htmlspecialchars($row['harga']); ?></div><br>
-                    <input type="number" id="inputItem" name="<?= htmlspecialchars($row['nama']); ?>" min="0"
-                        max="<?= htmlspecialchars($row['stok']); ?>" placeholder="0">
-                    <div id="infostok">Stok <?php if ($row['stok'] != 0) {
+                    <?php while ($row = mysqli_fetch_assoc($makanan_table_row)) : ?>
+                        <div id="card_menu">
+                            <img src="../asset_database/makanan/<?= $row["gambar"]; ?>">
+                            <div id="judul"><?= htmlspecialchars($row['nama']); ?></div>
+                            <div id="deskripsi"><?= htmlspecialchars($row['detail']); ?></div>
+                            <div id="box_harga"><?= htmlspecialchars($row['harga']); ?></div><br>
+                            <input type="number" id="inputItem" name="<?= htmlspecialchars($row['nama']); ?>" min="0" max="<?= htmlspecialchars($row['stok']); ?>" placeholder="0">
+                            <div id="infostok">Stok <?php if ($row['stok'] != 0) {
                                                         echo htmlspecialchars($row['stok']);
                                                     } else {
                                                         echo "Habis";
                                                     } ?>
-                    </div>
-                </div>
-                <?php endwhile; ?>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
                 <?php else : ?>
-                <div>Gagal mengambil data dari tabel makanan.</div>
+                    <div>Gagal mengambil data dari tabel makanan.</div>
                 <?php endif; ?>
             </div>
             <div id="row_card" style="justify-content: center;">
@@ -86,24 +85,23 @@ if (isset($_POST['submit'])) {
         <div id="sub_boxmenu_minum">
             <div id="row_card">
                 <?php if ($minuman_table_row) : ?>
-                <?php while ($row = mysqli_fetch_assoc($minuman_table_row)) : ?>
-                <div id="card_menu">
-                    <img src="../asset_database/minuman/<?= $row["gambar"]; ?>">
-                    <div id="judul"><?= htmlspecialchars($row['nama']); ?></div>
-                    <div id="deskripsi"><?= htmlspecialchars($row['detail']); ?></div>
-                    <div id="box_harga"><?= htmlspecialchars($row['harga']); ?></div><br>
-                    <input type="number" id="inputItem" name="<?= htmlspecialchars($row['nama']); ?>" min="0"
-                        max="<?= htmlspecialchars($row['stok']); ?>" placeholder="0">
-                    <div id="infostok">Stok <?php if ($row['stok'] != 0) {
+                    <?php while ($row = mysqli_fetch_assoc($minuman_table_row)) : ?>
+                        <div id="card_menu">
+                            <img src="../asset_database/minuman/<?= $row["gambar"]; ?>">
+                            <div id="judul"><?= htmlspecialchars($row['nama']); ?></div>
+                            <div id="deskripsi"><?= htmlspecialchars($row['detail']); ?></div>
+                            <div id="box_harga"><?= htmlspecialchars($row['harga']); ?></div><br>
+                            <input type="number" id="inputItem" name="<?= htmlspecialchars($row['nama']); ?>" min="0" max="<?= htmlspecialchars($row['stok']); ?>" placeholder="0">
+                            <div id="infostok">Stok <?php if ($row['stok'] != 0) {
                                                         echo htmlspecialchars($row['stok']);
                                                     } else {
                                                         echo "Habis";
                                                     } ?>
-                    </div>
-                </div>
-                <?php endwhile; ?>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
                 <?php else : ?>
-                <div>Gagal mengambil data dari tabel minuman.</div>
+                    <div>Gagal mengambil data dari tabel minuman.</div>
                 <?php endif; ?>
             </div>
             <div id="row_card" style="justify-content: center;">
@@ -112,19 +110,19 @@ if (isset($_POST['submit'])) {
         </div>
     </form>
     <script>
-    function tampilmakan() {
-        sub_boxmenu_makan.style.display = "flex";
-        sub_boxmenu_minum.style.display = "none";
-        switchmakanan.style.color = "#FF9C3D";
-        switchminuman.style.color = "white";
-    }
+        function tampilmakan() {
+            sub_boxmenu_makan.style.display = "flex";
+            sub_boxmenu_minum.style.display = "none";
+            switchmakanan.style.color = "#FF9C3D";
+            switchminuman.style.color = "white";
+        }
 
-    function tampilminum() {
-        sub_boxmenu_makan.style.display = "none";
-        sub_boxmenu_minum.style.display = "flex";
-        switchmakanan.style.color = "white";
-        switchminuman.style.color = "#FF9C3D";
-    }
+        function tampilminum() {
+            sub_boxmenu_makan.style.display = "none";
+            sub_boxmenu_minum.style.display = "flex";
+            switchmakanan.style.color = "white";
+            switchminuman.style.color = "#FF9C3D";
+        }
     </script>
 </body>
 

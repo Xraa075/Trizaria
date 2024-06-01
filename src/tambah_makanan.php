@@ -4,14 +4,14 @@ session_start();
 
 require 'function.php';
 
-if(!isset($_SESSION["login"])) {
+if (!isset($_SESSION["login"])) {
     header("Location: loginadmin.php");
     exit;
 }
 
-if(isset($_POST["submit"])) {
+if (isset($_POST["submit"])) {
     //melakukan pengecekan data berhasil di tambahkan atau tidak
-    if(tambahMakanan($_POST) > 0){
+    if (tambahMakanan($_POST) > 0) {
         echo "<script>
             alert('data berhasil ditambahkan');
             document.location.href = 'dashboard_admin.php';
@@ -43,6 +43,7 @@ if(isset($_POST["submit"])) {
         <form action="" method="post" enctype="multipart/form-data">
             <div class="container1">
                 <h2>Tambah Makanan</h2>
+                <input type="hidden" name="role_menu" value="0">
                 <div class="inputgambar">
                     <label for="file-upload" class="custom-file-label">Pilih Gambar</label>
                     <input class="file-input" name="gambar" type="file" id="file-upload" required>

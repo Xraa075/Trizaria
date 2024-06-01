@@ -2,34 +2,52 @@
 session_start();
 require 'koneksi.php';
 
-$tanggal = date("l d F Y H:i:s") . " WIB";
-$tanggal1 = date("ymd");
-$nomor_unik = 1;
-$nomor_unik_formatted = sprintf("%04d", $nomor_unik);
-$nomor_bill = "PSN" . $tanggal1 . $nomor_unik_formatted;
-
 if (empty($_SESSION['nama_pembeli'])) {
     header("Location: inputnama_kasir.php");
     exit;
 }
 
+
+$id = mysqli_query($koneksi, "SELECT id_transaksi, tanggal_transaksi FROM transaksi WHERE no_transaksi = $nomor_transaksi");
+$id_transaksi = mysqli_fetch_assoc($id);
+$id_transaksi = $id_transaksi['id_transaksi'];
+$tanggal_transaksi = $id_transaksi['tanggal_transaksi'];
+
+foreach ($_SESSION['menu'] as $key => $value) {
+
+    // $query = "INSERT INTO detail_transaksi (id_transaksi, id_makanan, id_minuman, kuantitas, harga_pesanan, total_herga) VALUES ('$id_transaksi', NULL, NULL, '$value', NULL, {$_SESSION['total']})";
+
+    $menus = mysqli_query($koneksi, "SELECT * FROM makanan WHERE nama = '$key' UNION SELECT * FROM minuman WHERE nama = '$key'");
+    $menu = mysqli_fetch_assoc($menus);
+    $harga_pesanan = $menu['harga'] * $value;
+    if ($menu['role'] == 0) {
+        $query = "INSERT INTO detail_transaksi (id_transaksi, id_pembayaran, id_makanan, id_minuman, kuantitas, harga_pesanan, total_harga) VALUES ('$id_transaksi', {$menu['id_makanan']}, '', '$harga_pesanan', {$_SESSION['total']})";
+    } else {
+        $query = "INSERT INTO detail_transaksi (id_transaksi, id_pembayaran, id_makanan, id_minuman, kuantitas, harga_pesanan, total_harga) VALUES ('$id_transaksi', '', {$menu['id_minuman']}, '$harga_pesanan', {$_SESSION['total']})";
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 if (isset($_POST['logout'])) {
-
-    //update data transaksi ke database sebelum session dihapus
-    $id_kasir = $_SESSION['id_kasir'];
-    $nomor_transaksi = $nomor_bill;
-    $tanggal_transaksi = $tanggal;
-    $nama_pembeli = $_SESSION['nama_pembeli'];
-    $query = "INSERT INTO transaksi (id_kasir, no_transaksi, nama_pelanggan) VALUES ('$id_kasir', '$nomor_transaksi', '$nama_pembeli')";
-    $result = mysqli_query($koneksi, $query);
-
-    //menghapus session setelah data transaksi disimpan
+    //menghapus session setelah data disimpan
     unset($_SESSION['nama_pembeli']);
     unset($_SESSION['menu']);
     unset($_SESSION['total']);
     unset($_SESSION['uangditerima']);
     unset($_SESSION['kembalian']);
 
+    //redirect ke dashboard_kasir.php
     header("Location: dashboard_kasir.php");
     exit;
 }
