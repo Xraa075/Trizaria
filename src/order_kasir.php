@@ -6,6 +6,7 @@ if (empty($_SESSION['total'])) {
     header("Location: menu.php");
     exit;
 }
+var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>

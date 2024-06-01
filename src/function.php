@@ -35,6 +35,7 @@ function tambahMakanan($data) {
     //memanggil variabel global $conn
     global $conn;
 
+    $role_menu = htmlspecialchars($data["role_menu"]);
     $nama = htmlspecialchars($data["nama"]);
     $detail = htmlspecialchars($data["detail"]);
     $harga = htmlspecialchars($data["harga"]);
@@ -47,7 +48,7 @@ function tambahMakanan($data) {
     }
 
     //query untuk melakukan insert data makanan
-    $query = "INSERT INTO makanan VALUES ('', '$gambar', '$nama', '$detail', '$harga', '$stok')";
+    $query = "INSERT INTO makanan VALUES ('','$role_menu', '$gambar', '$nama', '$detail', '$harga', '$stok')";
     mysqli_query($conn, $query);
 
     //mengembalikan nilai apakah data berhasil di submit atau tidak
@@ -59,6 +60,7 @@ function tambahMinuman($data) {
     //memanggil variabel global $conn
     global $conn;
 
+    $role = htmlspecialchars($data["role"]);
     $nama = htmlspecialchars($data["nama"]);
     $detail = htmlspecialchars($data["detail"]);
     $harga = htmlspecialchars($data["harga"]);
@@ -70,8 +72,8 @@ function tambahMinuman($data) {
         return false;
     }
 
-    //query untuk melakukan insert data makanan
-    $query = "INSERT INTO makanan VALUES ('', '$gambar', '$nama', '$detail', '$harga', '$stok')";
+    //query untuk melakukan insert data minuman
+    $query = "INSERT INTO minuman VALUES ('$role', '$gambar', '$nama', '$detail', '$harga', '$stok')";
     mysqli_query($conn, $query);
 
     //mengembalikan nilai apakah data berhasil di submit atau tidak
