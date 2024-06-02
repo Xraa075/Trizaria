@@ -50,14 +50,12 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     border-radius: 20px;
     padding-inline-start: 3rem;
     padding-inline-end: 3rem;
 }
 
-.detailcon{
-    margin-top: 40px;
-}
 .detailcon h2, .detailcon p {
     margin-bottom: 5px;
 }
@@ -84,7 +82,7 @@ body {
     justify-content: center;
     padding: 12px;
     box-sizing: border-box;
-    border: 2px solid #FFBA78;
+    border: none;
 }
 
 a {

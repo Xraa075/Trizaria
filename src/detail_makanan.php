@@ -25,7 +25,7 @@ $detail = mysqli_fetch_assoc($sql_select);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="detail_makanan.css">
-    <title>Document</title>
+    <title>Detail Makanan</title>
 </head>
 
 <body>

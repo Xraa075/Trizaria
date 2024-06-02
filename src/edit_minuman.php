@@ -25,15 +25,16 @@ if(isset($_POST["submit"])) {
         $namafile = $namafilekosong;
     }
 
-    $ukuranfile = $_FILES['gambar']['size'];
-    $error = $_FILES['gambar']['error'];
-    $tmpName = $_FILES['gambar']['tmp_name'];
-
     $id_minuman = $_POST["id"];
     $nama = $_POST["nama"];
     $detail = $_POST["detail"];
     $harga = $_POST["harga"];
     $stok = $_POST["stok"];
+
+    $gambar = uploadMinuman();
+    if(!$gambar) {
+        return false;
+    }
 
     $query = "UPDATE minuman SET gambar = '$namafile', nama = '$nama', detail = '$detail', harga = '$harga', stok = '$stok' WHERE id_minumamn = '$id_minuman'";
 
@@ -72,7 +73,7 @@ if(isset($_POST["submit"])) {
             <div class="container2">
                 <input name="id" type="hidden" value="<?= $detail["id_minuman"]; ?>">
                 <div class="inputgambar">
-                    <img class="gambarmakananinput" src="../asset_database/makanan/<?= $detail["gambar"]; ?>">
+                    <img class="gambarmakananinput" src="../asset_database/minuman/<?= $detail["gambar"]; ?>">
                     <label for="file-upload" class="custom-file-label">Choose File</label>
                     <input class="file-input" name="gambar" type="file" id="file-upload">
                     <span id="file-name" class="file-name"></span>

@@ -49,15 +49,14 @@ body {
     background-color: #FFBA78;
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: center;
     border-radius: 20px;
     padding-inline-start: 3rem;
     padding-inline-end: 3rem;
 }
 
-.detailcon{
-    margin-top: 40px;
-}
+
 .detailcon h2, .detailcon p {
     margin-bottom: 5px;
 }
@@ -77,6 +76,7 @@ body {
 .buttonkembali {
     height: 3rem;
     background-color: #FF9C3D;
+    border: none;
     margin-top: 1rem;
     border-radius: 10px;
     display: flex;
@@ -84,7 +84,6 @@ body {
     justify-content: center;
     padding: 12px;
     box-sizing: border-box;
-    border: 2px solid #FFBA78;
 }
 
 a {

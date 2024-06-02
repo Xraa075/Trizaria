@@ -25,15 +25,16 @@ if(isset($_POST["submit"])) {
         $namafile = $namafilekosong;
     }
 
-    $ukuranfile = $_FILES['gambar']['size'];
-    $error = $_FILES['gambar']['error'];
-    $tmpName = $_FILES['gambar']['tmp_name'];
-
     $id_makanan = $_POST["id"];
     $nama = $_POST["nama"];
     $detail = $_POST["detail"];
     $harga = $_POST["harga"];
     $stok = $_POST["stok"];
+
+    $gambar = uploadMakanan();
+    if(!$gambar) {
+        return false;
+    }
 
     $query = "UPDATE makanan SET gambar = '$namafile', nama = '$nama', detail = '$detail', harga = '$harga', stok = '$stok' WHERE id_makanan = '$id_makanan'";
 
@@ -42,6 +43,8 @@ if(isset($_POST["submit"])) {
     header("Location: dashboard_admin.php");
     exit;
 }
+
+
 
 ?>
 <!DOCTYPE html>
