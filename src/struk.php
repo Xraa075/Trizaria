@@ -7,62 +7,65 @@ if (empty($_SESSION['nama_pembeli'])) {
     exit;
 }
 
+// Mengambil data tanggal transaksi terbaru dari tabel transaksi
+$tanggal_transaksi = mysqli_query($koneksi, "SELECT tanggal_transaksi FROM transaksi ORDER BY id_transaksi DESC LIMIT 1");
+$tanggal_transaksi = mysqli_fetch_assoc($tanggal_transaksi);
+$tanggal_transaksi = $tanggal_transaksi['tanggal_transaksi'];
 
-$id = mysqli_query($koneksi, "SELECT id_transaksi, tanggal_transaksi FROM transaksi WHERE no_transaksi = $nomor_transaksi");
-$id_transaksi = mysqli_fetch_assoc($id);
-$id_transaksi = $id_transaksi['id_transaksi'];
-$tanggal_transaksi = $id_transaksi['tanggal_transaksi'];
+// Mengambil nomor transaksi terbaru dari tabel transaksi
+$nomor_transaksi = mysqli_query($koneksi, "SELECT no_transaksi FROM transaksi ORDER BY id_transaksi DESC LIMIT 1");
+$nomor_transaksi = mysqli_fetch_assoc($nomor_transaksi);
+$nomor_transaksi = $nomor_transaksi['no_transaksi'];
 
+// Insert ke tabel detail transaksi
 foreach ($_SESSION['menu'] as $key => $value) {
+    // Mengecek apakah menu yang dipesan ada di tabel makanan atau minuman dengan query exist
+    $cek_menu_makanan = mysqli_query($koneksi, "SELECT EXISTS(SELECT * FROM makanan WHERE nama = '$key') AS exist");
+    $cek_menu_makanan = mysqli_fetch_assoc($cek_menu_makanan)['exist'];
+    
+    if ($cek_menu_makanan == 1) {
+        $menus_makanan = mysqli_query($koneksi, "SELECT * FROM makanan WHERE nama = '$key'");
+        $menus_makanan = mysqli_fetch_assoc($menus_makanan);
+        $total = $value * $menus_makanan['harga']; // Menghitung total harga untuk item makanan
+        $query_menu_makanan = "INSERT INTO detail_transaksi (id_transaksi, id_pembayaran, id_makanan, id_minuman, kuantitas, harga_pesanan, total_harga) VALUES ('{$_SESSION['id_transaksi']}', '{$_SESSION['id_pembayaran']}', '{$menus_makanan['id_makanan']}', NULL, '$value', '{$menus_makanan['harga']}', '$total')";
+        mysqli_query($koneksi, $query_menu_makanan);
+    }
 
-    // $query = "INSERT INTO detail_transaksi (id_transaksi, id_makanan, id_minuman, kuantitas, harga_pesanan, total_herga) VALUES ('$id_transaksi', NULL, NULL, '$value', NULL, {$_SESSION['total']})";
-
-    $menus = mysqli_query($koneksi, "SELECT * FROM makanan WHERE nama = '$key' UNION SELECT * FROM minuman WHERE nama = '$key'");
-    $menu = mysqli_fetch_assoc($menus);
-    $harga_pesanan = $menu['harga'] * $value;
-    if ($menu['role'] == 0) {
-        $query = "INSERT INTO detail_transaksi (id_transaksi, id_pembayaran, id_makanan, id_minuman, kuantitas, harga_pesanan, total_harga) VALUES ('$id_transaksi', {$menu['id_makanan']}, '', '$harga_pesanan', {$_SESSION['total']})";
-    } else {
-        $query = "INSERT INTO detail_transaksi (id_transaksi, id_pembayaran, id_makanan, id_minuman, kuantitas, harga_pesanan, total_harga) VALUES ('$id_transaksi', '', {$menu['id_minuman']}, '$harga_pesanan', {$_SESSION['total']})";
+    $cek_menu_minuman = mysqli_query($koneksi, "SELECT EXISTS(SELECT * FROM minuman WHERE nama = '$key') AS exist");
+    $cek_menu_minuman = mysqli_fetch_assoc($cek_menu_minuman)['exist'];
+    
+    if ($cek_menu_minuman == 1) {
+        $menus_minuman = mysqli_query($koneksi, "SELECT * FROM minuman WHERE nama = '$key'");
+        $menus_minuman = mysqli_fetch_assoc($menus_minuman);
+        $total = $value * $menus_minuman['harga']; // Menghitung total harga untuk item minuman
+        $query_menu_minuman = "INSERT INTO detail_transaksi (id_transaksi, id_pembayaran, id_makanan, id_minuman, kuantitas, harga_pesanan, total_harga) VALUES ('{$_SESSION['id_transaksi']}', '{$_SESSION['id_pembayaran']}', NULL, '{$menus_minuman['id_minuman']}', '$value', '{$menus_minuman['harga']}', '$total')";
+        mysqli_query($koneksi, $query_menu_minuman);
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 if (isset($_POST['logout'])) {
-    //menghapus session setelah data disimpan
+    // Menghapus session setelah data disimpan
     unset($_SESSION['nama_pembeli']);
     unset($_SESSION['menu']);
     unset($_SESSION['total']);
     unset($_SESSION['uangditerima']);
     unset($_SESSION['kembalian']);
 
-    //redirect ke dashboard_kasir.php
+    // Redirect ke dashboard_kasir.php
     header("Location: dashboard_kasir.php");
     exit;
 }
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="struk.css">
 </head>
-
 <body>
     <div class="container">
         <div class="content">
@@ -82,12 +85,12 @@ if (isset($_POST['logout'])) {
             <div class="row">
                 <div class="cell label">No. Bill</div>
                 <div class="cell separator">:</div>
-                <div class="cell"><?php echo $nomor_bill; ?></div>
+                <div class="cell"><?php echo $nomor_transaksi; ?></div>
             </div>
             <div class="row">
                 <div class="cell label">Date</div>
                 <div class="cell separator">:</div>
-                <div class="cell"><?php echo $tanggal; ?></div>
+                <div class="cell"><?php echo $tanggal_transaksi . " WIB"; ?></div>
             </div>
             <div class="row">
                 <div class="cell label">Cashier</div>
@@ -135,5 +138,4 @@ if (isset($_POST['logout'])) {
         </form>
     </div>
 </body>
-
 </html>

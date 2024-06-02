@@ -84,7 +84,7 @@ if (isset($_POST["logout"])) {
         <div class="container2">
             <h2>Menejemen Minuman</h2>
             <div class="buttontambah">
-                <a href="tambah_makanan.php">Tambah Menu Minuman</a>
+                <a href="tambah_minuman.php">Tambah Menu Minuman</a>
             </div>
             <table>
                 <div class="table_head">

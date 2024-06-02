@@ -32,7 +32,7 @@ if (isset($_POST['button_kembalian'])) {
 
 if (isset($_POST['cetak'])) {
     //insert ke tabel transaksi
-    $query_transaksi = mysqli_query($koneksi, "INSERT INTO transaksi (id_kasir, no_transaksi, tanggal_transaksi, nama_pelanggan) VALUES ('{$_SESSION['id_kasir']}', '$nomor_transaksi', '', '{$_SESSION['nama_pembeli']}'");
+    $query_transaksi = mysqli_query($koneksi, "INSERT INTO transaksi (id_kasir, no_transaksi, nama_pelanggan) VALUES ('{$_SESSION['id_kasir']}', '$nomor_transaksi', '{$_SESSION['nama_pembeli']}')");
 
     //mengambil id transaksi dan menjadikan sebagai session
     $res = mysqli_query($koneksi, "SELECT id_transaksi FROM transaksi ORDER BY id_transaksi DESC LIMIT 1");
@@ -42,7 +42,7 @@ if (isset($_POST['cetak'])) {
     //redirect ke struk.php
     header("Location: struk.php");
 }
-
+// var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +65,7 @@ if (isset($_POST['cetak'])) {
         </form>
         <form class="container2" action="" method="POST">
             <h2 class="text">Uang Kembali : <?php echo isset($_SESSION['kembalian']) ? $_SESSION['kembalian'] : 0; ?></h2>
-            <button type="button" name="cetak">Cetak Struk Transaksi</button>
+            <button type="submit" name="cetak">Cetak Struk Transaksi</button>
         </form>
     </div>
 </body>

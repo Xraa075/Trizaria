@@ -1,6 +1,6 @@
 <?php
 
-//koneksi database
+// Koneksi database
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -8,31 +8,26 @@ $dbname = "pizza";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-//fungsi untuk menampilkan nama admin
+// Fungsi untuk menampilkan nama admin
 function tampilNamaAdmin($data) {
-
-    //memanggil variabel globan $conn0
     global $conn;
-
-    //mengambil data dari session dan menyimpannya dalam variabel
     $username_kasir = $data;
 
-    $queryNama = "SELECT * FROM admin_pizza WHERE username_admin = '$username_kasir'";
-    $resultNama = $conn->query($queryNama);
+    $queryNama = "SELECT * FROM admin_pizza WHERE username_admin = ?";
+    $stmt = $conn->prepare($queryNama);
+    $stmt->bind_param("s", $username_kasir);
+    $stmt->execute();
+    $resultNama = $stmt->get_result();
 
-    if($resultNama->num_rows > 0) {
-        $namaAdmin = [];
-        while($row = $resultNama->fetch_assoc()) {
-        $namaAdmin = htmlspecialchars($row["nama_admin"]);
-        return $namaAdmin;
-        }
+    if ($resultNama->num_rows > 0) {
+        $row = $resultNama->fetch_assoc();
+        return htmlspecialchars($row["nama_admin"]);
     }
+    return null;
 }
 
-//fungsi untuk menambahkan makanan (tambah_makanan.php)
+// Fungsi untuk menambahkan makanan
 function tambahMakanan($data) {
-    
-    //memanggil variabel global $conn
     global $conn;
 
     $role_menu = htmlspecialchars($data["role_menu"]);
@@ -41,126 +36,112 @@ function tambahMakanan($data) {
     $harga = htmlspecialchars($data["harga"]);
     $stok = htmlspecialchars($data["stok"]);
 
-    //upload gambar 
+    // Upload gambar 
     $gambar = uploadMakanan();
-    if(!$gambar) {
+    if (!$gambar) {
         return false;
     }
 
-    //query untuk melakukan insert data makanan
-    $query = "INSERT INTO makanan VALUES ('','$role_menu', '$gambar', '$nama', '$detail', '$harga', '$stok')";
-    mysqli_query($conn, $query);
+    // Query untuk melakukan insert data makanan
+    $query = "INSERT INTO makanan (role_menu, gambar, nama, detail, harga, stok) VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("isssds", $role_menu, $gambar, $nama, $detail, $harga, $stok);
+    $stmt->execute();
 
-    //mengembalikan nilai apakah data berhasil di submit atau tidak
-    return mysqli_affected_rows($conn);
+    return $stmt->affected_rows;
 }
 
 function tambahMinuman($data) {
-    
-    //memanggil variabel global $conn
     global $conn;
 
-    $role = htmlspecialchars($data["role"]);
+    $role_menu = htmlspecialchars($data["role"]); // Mengganti $data["role"] menjadi $data["role_menu"]
     $nama = htmlspecialchars($data["nama"]);
     $detail = htmlspecialchars($data["detail"]);
     $harga = htmlspecialchars($data["harga"]);
     $stok = htmlspecialchars($data["stok"]);
 
-    //upload gambar 
+    // Upload gambar 
     $gambar = uploadMinuman();
-    if(!$gambar) {
+    if (!$gambar) {
         return false;
     }
 
-    //query untuk melakukan insert data minuman
-    $query = "INSERT INTO minuman VALUES ('$role', '$gambar', '$nama', '$detail', '$harga', '$stok')";
-    mysqli_query($conn, $query);
+    // Query untuk melakukan insert data minuman
+    $query = "INSERT INTO minuman (role_menu, gambar, nama, detail, harga, stok) VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("isssds", $role_menu, $gambar, $nama, $detail, $harga, $stok);
+    $stmt->execute();
 
-    //mengembalikan nilai apakah data berhasil di submit atau tidak
-    return mysqli_affected_rows($conn);
+    return $stmt->affected_rows;
 }
 
 function editMakanan($data) {
-    
+    // Implementasi untuk fungsi editMakanan
 }
 
 function uploadMakanan() {
-
     $namafile = $_FILES['gambar']['name'];
     $ukuranfile = $_FILES['gambar']['size'];
     $error = $_FILES['gambar']['error'];
     $tmpName = $_FILES['gambar']['tmp_name'];
 
-    //cek apakah ada gambar yang diupload
-    if($error === 4) {
-        echo "<script>
-            alert('Masukkan gambar terlebih dahulu');
-        </script>";
+    if ($error === 4) {
+        echo "<script>alert('Masukkan gambar terlebih dahulu');</script>";
         return false;
     }
 
-    //cek apakah gamabr yang diupload adalah gambar
     $ekstensiGambarValid = ['svg', 'png'];
     $ekstensiGambar = explode('.', $namafile);
     $ekstensiGambar = strtolower(end($ekstensiGambar));
-    if(!in_array($ekstensiGambar, $ekstensiGambarValid)) {
-        echo "<script>
-            alert('gunakan format gambar yang benar');
-        </script>";
+    if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+        echo "<script>alert('gunakan format gambar yang benar');</script>";
         return false;
     }
 
-    //cek jika ukuran gambar terlalu besar
-    if($ukuranfile > 15728640) {
-        echo "<script>
-            alert('ukuran gambar terlalu besar');
-        </script>";
+    if ($ukuranfile > 15728640) {
+        echo "<script>alert('ukuran gambar terlalu besar');</script>";
         return false;
     }
 
-    //setelah melakukan pengecekan, upload gambar
-    move_uploaded_file($tmpName, '../asset_database/makanan/' . $namafile);
+    $targetDir = '../asset_database/makanan/';
+    if (!is_dir($targetDir)) {
+        mkdir($targetDir, 0755, true);
+    }
 
+    move_uploaded_file($tmpName, $targetDir . $namafile);
     return $namafile;
 }
 
 function uploadMinuman() {
-
     $namafile = $_FILES['gambar']['name'];
     $ukuranfile = $_FILES['gambar']['size'];
     $error = $_FILES['gambar']['error'];
     $tmpName = $_FILES['gambar']['tmp_name'];
 
-    //cek apakah ada gambar yang diupload
-    if($error === 4) {
-        echo "<script>
-            alert('Masukkan gambar terlebih dahulu');
-        </script>";
+    if ($error === 4) {
+        echo "<script>alert('Masukkan gambar terlebih dahulu');</script>";
         return false;
     }
 
-    //cek apakah gamabr yang diupload adalah gambar
     $ekstensiGambarValid = ['svg', 'png'];
     $ekstensiGambar = explode('.', $namafile);
     $ekstensiGambar = strtolower(end($ekstensiGambar));
-    if(!in_array($ekstensiGambar, $ekstensiGambarValid)) {
-        echo "<script>
-            alert('gunakan format gambar yang benar');
-        </script>";
+    if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+        echo "<script>alert('gunakan format gambar yang benar');</script>";
         return false;
     }
 
-    //cek jika ukuran gambar terlalu besar
-    if($ukuranfile > 15728640) {
-        echo "<script>
-            alert('ukuran gambar terlalu besar');
-        </script>";
+    if ($ukuranfile > 15728640) {
+        echo "<script>alert('ukuran gambar terlalu besar');</script>";
         return false;
     }
 
-    //setelah melakukan pengecekan, upload gambar
-    move_uploaded_file($tmpName, '../asset_database/minuman/' . $namafile);
+    $targetDir = '../asset_database/minuman/';
+    if (!is_dir($targetDir)) {
+        mkdir($targetDir, 0755, true);
+    }
 
+    move_uploaded_file($tmpName, $targetDir . $namafile);
     return $namafile;
 }
 

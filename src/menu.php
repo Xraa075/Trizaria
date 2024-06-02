@@ -26,6 +26,18 @@ if (isset($_POST['submit'])) {
         $menus = mysqli_query($koneksi, "SELECT * FROM makanan WHERE nama = '$key' UNION SELECT * FROM minuman WHERE nama = '$key'");
         $menu = mysqli_fetch_assoc($menus);
         $_SESSION['total'] += $value * $menu['harga'];
+
+        // Update stok makanan atau minuman
+        if ($menu['stok'] >= $value) {
+            if (isset($menu['id_makanan'])) {
+                $update_stok = mysqli_query($koneksi, "UPDATE makanan SET stok = stok - $value WHERE id_makanan = {$menu['id_makanan']}");
+            } elseif (isset($menu['id_minuman'])) {
+                $update_stok = mysqli_query($koneksi, "UPDATE minuman SET stok = stok - $value WHERE id_minuman = {$menu['id_minuman']}");
+            }
+        } else {
+            echo "Stok untuk $key tidak mencukupi!";
+            exit;
+        }
     }
 
     header("Location: order_kasir.php");
@@ -33,21 +45,18 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, Initial-scale=1.0">
     <link href="menu.css" rel="stylesheet">
     <title>Menu</title>
 </head>
-
 <body>
     <div id="header">
         <img src="asset/LogoPizzaria.svg" width="290px" height="137" />
-        <div id="ourmenuheader">
-            OUR MENU
-        </div>
+        <div id="ourmenuheader">OUR MENU</div>
         <div id="switchmenu">
             <div id="switchmakanan" onclick="tampilmakan()">Pizza</div>
             <div>|</div>
@@ -125,5 +134,4 @@ if (isset($_POST['submit'])) {
         }
     </script>
 </body>
-
 </html>

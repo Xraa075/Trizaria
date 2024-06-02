@@ -86,6 +86,10 @@ input {
     height: 3.5rem;
     border-radius: 2rem;
     margin-top: 2rem;
+    padding: 20px;
+    box-sizing: border-box;
+    color: white;
+    font-size: 18px;
 }
 
 #input::-webkit-inner-spin-button,
