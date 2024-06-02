@@ -42,7 +42,7 @@ if (isset($_POST['cetak'])) {
     //redirect ke struk.php
     header("Location: struk.php");
 }
-// var_dump($_SESSION);
+
 ?>
 
 <!DOCTYPE html>
@@ -60,11 +60,13 @@ if (isset($_POST['cetak'])) {
     <div class="container">
         <form class="container1" action="" method="POST">
             <h2 class="text">Total Pembayaran : <?php echo $_SESSION['total'] ?></h2>
-            <input type="number" name="uang_diterima" placeholder="<?php echo isset($_SESSION['uangditerima']) ? $_SESSION['uangditerima'] : 0; ?>" required>
+            <input type="number" name="uang_diterima"
+                placeholder="<?php echo isset($_SESSION['uangditerima']) ? $_SESSION['uangditerima'] : 0; ?>" required>
             <button type="submit" name="button_kembalian">Submit</button>
         </form>
         <form class="container2" action="" method="POST">
-            <h2 class="text">Uang Kembali : <?php echo isset($_SESSION['kembalian']) ? $_SESSION['kembalian'] : 0; ?></h2>
+            <h2 class="text">Uang Kembali : <?php echo isset($_SESSION['kembalian']) ? $_SESSION['kembalian'] : 0; ?>
+            </h2>
             <button type="submit" name="cetak">Cetak Struk Transaksi</button>
         </form>
     </div>
