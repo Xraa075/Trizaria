@@ -6,7 +6,7 @@ if (empty($_SESSION['total'])) {
     header("Location: menu.php");
     exit;
 }
-var_dump($_SESSION);
+
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +26,7 @@ var_dump($_SESSION);
             <?php
             $menus = mysqli_query($koneksi, "SELECT * FROM makanan WHERE nama = '$key' UNION SELECT * FROM minuman WHERE nama = '$key'");
             $menu = mysqli_fetch_assoc($menus);
+            
             ?>
             <div class="container1">
                 <div class="leftcon">
