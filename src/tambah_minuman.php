@@ -43,7 +43,7 @@ if(isset($_POST["submit"])) {
         <form action="" method="post" enctype="multipart/form-data">
             <div class="container1">
                 <h2>Tambah Minuman</h2>
-                <input type="hidden" name="role" value="1">
+                <input type="hidden" name="role" value="2">
                 <div class="inputgambar">
                     <label for="file-upload" class="custom-file-label">Pilih Gambar</label>
                     <input class="file-input" name="gambar" type="file" id="file-upload" required>
