@@ -1,1 +1,1 @@
-Cashier Web Aplication
+Cashier Web Aplication (PHP)
